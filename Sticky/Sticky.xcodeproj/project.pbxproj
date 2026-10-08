@@ -23,6 +23,7 @@
 		04001C1730762F85001EFAE4 /* NotesModelDTOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C1630762F85001EFAE4 /* NotesModelDTOTests.swift */; };
 		04001C1B30763996001EFAE4 /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C1A30763996001EFAE4 /* DataStoreTests.swift */; };
 		04001C1D3076C78C001EFAE4 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C1C3076C78C001EFAE4 /* TestSupport.swift */; };
+		04001C1F3076DD85001EFAE4 /* DataStore+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C1E3076DD85001EFAE4 /* DataStore+Setup.swift */; };
 		04001C2130761224001EFAE4 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C2030761224001EFAE4 /* DataTypes.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		04001C1630762F85001EFAE4 /* NotesModelDTOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModelDTOTests.swift; sourceTree = "<group>"; };
 		04001C1A30763996001EFAE4 /* DataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
 		04001C1C3076C78C001EFAE4 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
+		04001C1E3076DD85001EFAE4 /* DataStore+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore+Setup.swift"; sourceTree = "<group>"; };
 		04001C2030761224001EFAE4 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,13 +118,9 @@
 			children = (
 				04001BE030761221001EFAE4 /* StickyApp.swift */,
 				04001BE230761221001EFAE4 /* ContentView.swift */,
-				04001C0E30762B2A001EFAE4 /* DataModels.swift */,
-				04001C1230762D9A001EFAE4 /* DataStore.swift */,
-				04001C2030761224001EFAE4 /* DataTypes.swift */,
-				04001C0C307623EE001EFAE4 /* DefaultViewType.swift */,
-				04001C1030762BA8001EFAE4 /* DTOs.swift */,
 				04001C0A3076211D001EFAE4 /* Theme.swift */,
 				04001BE430761224001EFAE4 /* Assets.xcassets */,
+				04001C203076DDB5001EFAE4 /* Data */,
 				04001BE630761224001EFAE4 /* Preview Content */,
 			);
 			path = Sticky;
@@ -155,6 +153,19 @@
 				04001BFD30761224001EFAE4 /* StickyUITestsLaunchTests.swift */,
 			);
 			path = StickyUITests;
+			sourceTree = "<group>";
+		};
+		04001C203076DDB5001EFAE4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				04001C0E30762B2A001EFAE4 /* DataModels.swift */,
+				04001C1230762D9A001EFAE4 /* DataStore.swift */,
+				04001C1E3076DD85001EFAE4 /* DataStore+Setup.swift */,
+				04001C2030761224001EFAE4 /* DataTypes.swift */,
+				04001C0C307623EE001EFAE4 /* DefaultViewType.swift */,
+				04001C1030762BA8001EFAE4 /* DTOs.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +303,7 @@
 				04001C1330762D9A001EFAE4 /* DataStore.swift in Sources */,
 				04001C0D307623EE001EFAE4 /* DefaultViewType.swift in Sources */,
 				04001C1130762BA8001EFAE4 /* DTOs.swift in Sources */,
+				04001C1F3076DD85001EFAE4 /* DataStore+Setup.swift in Sources */,
 				04001C0B3076211D001EFAE4 /* Theme.swift in Sources */,
 				04001C2130761224001EFAE4 /* DataTypes.swift in Sources */,
 				04001BE130761221001EFAE4 /* StickyApp.swift in Sources */,

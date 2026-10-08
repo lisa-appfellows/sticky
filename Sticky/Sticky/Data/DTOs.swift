@@ -8,7 +8,7 @@
 import Foundation
 
 struct NoteDTO {
-    var id: String
+    var noteId: String
     var updated: Date
     var sortOrder: Int
     var title: String
@@ -18,14 +18,14 @@ struct NoteDTO {
     var asModel: NoteModel { .init(fromDTO: self) }
 
     init(
-        id: String = UUID().uuidString,
+        noteId: String = UUID().uuidString,
         updated: Date = Date(),
         sortOrder: Int = -1,
         title: String = "",
         text: String = "",
         noteColor: NoteColor = .yellow
     ) {
-        self.id = id
+        self.noteId = noteId
         self.updated = updated
         self.sortOrder = sortOrder
         self.title = title
@@ -34,7 +34,7 @@ struct NoteDTO {
     }
 
     init(fromModel model: NoteModel) {
-        self.id = model.id
+        self.noteId = model.noteId
         self.sortOrder = model.sortOrder ?? -1
         self.title = model.title ?? ""
         self.text = model.text ?? ""
