@@ -15,16 +15,18 @@ enum TestSupport {
         return cal
     }()
 
-    static let updatedDate = createDate(year: 2026, month: 6, day: 8, hour: 10, minute: 30, second: 50)
     static let updatedDateString = updatedDate.ISO8601Format()
+    static let updatedDate = createDate(
+        year: 2026, month: 6, day: 8, hour: 10, minute: 30, second: 50
+    )
     
     static func createDate(
-        year: Int,
-        month: Int,
-        day: Int,
-        hour: Int,
-        minute: Int,
-        second: Int
+        year: Int = 2026,
+        month: Int = 1,
+        day: Int = 1,
+        hour: Int = 0,
+        minute: Int = 0,
+        second: Int = 0
     ) -> Date {
         var comps = DateComponents()
         comps.year = year
@@ -34,6 +36,25 @@ enum TestSupport {
         comps.minute = minute
         comps.second = second
         return gregorianCalendar.date(from: comps)!
+    }
+
+    static func createDateString(
+        year: Int = 2026,
+        month: Int = 1,
+        day: Int = 1,
+        hour: Int = 0,
+        minute: Int = 0,
+        second: Int = 0
+    ) -> String {
+        var comps = DateComponents()
+        comps.year = year
+        comps.month = month
+        comps.day = day
+        comps.hour = hour
+        comps.minute = minute
+        comps.second = second
+        let date = gregorianCalendar.date(from: comps)!
+        return date.ISO8601Format()
     }
 
     static func sameDay(_ dateA: Date, as dateB: Date) -> Bool {

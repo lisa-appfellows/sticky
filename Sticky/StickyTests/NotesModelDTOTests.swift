@@ -60,7 +60,7 @@ final class NotesModelDTOTests: XCTestCase {
         XCTAssertEqual(newModel.noteColorName, NoteColor.yellow.rawValue)
     }
 
-    func testNoteModelManualCreation() throws {
+    func testNoteModelManualCreation() {
         let updatedString = TestSupport.updatedDateString
         let newModel = NoteModel(
             updatedString: updatedString,
@@ -77,7 +77,7 @@ final class NotesModelDTOTests: XCTestCase {
         XCTAssertEqual(newModel.noteColorName, NoteColor.pink.rawValue)
     }
 
-    func testNoteModelCreationFromDTO() throws {
+    func testNoteModelCreationFromDTO() {
         let dto = NoteDTO(
             updated: TestSupport.updatedDate,
             sortOrder: 3,
@@ -87,14 +87,43 @@ final class NotesModelDTOTests: XCTestCase {
         )
 
         let newModel = NoteModel(fromDTO: dto)
+        XCTAssertEqual(newModel.noteId, newModel.noteId)
         XCTAssertEqual(newModel.updatedString, TestSupport.updatedDateString)
-        XCTAssertEqual(newModel.sortOrder, 3)
-        XCTAssertEqual(newModel.title, "Title 3")
-        XCTAssertEqual(newModel.text, "Text 3")
-        XCTAssertEqual(newModel.noteColorName, NoteColor.blue.rawValue)
+        XCTAssertEqual(newModel.sortOrder, dto.sortOrder)
+        XCTAssertEqual(newModel.title, dto.title)
+        XCTAssertEqual(newModel.text, dto.text)
+        XCTAssertEqual(newModel.noteColorName, dto.noteColor.rawValue)
     }
 
-    func testNoteDTOCreationFromModel() throws {
+    func testNoteModelUpdateFromDTO() {
+        let model = NoteModel(
+            updatedString: TestSupport.updatedDateString,
+            sortOrder: 0,
+            title: "Title",
+            text: "Text",
+            noteColorName: NoteColor.pink.rawValue
+        )
+
+        var dto = NoteDTO(fromModel: model)
+        let newUpdated = TestSupport.createDate(
+            year: 2026, month: 8, day: 1, hour: 2, minute: 30, second: 5
+        )
+        dto.updated = newUpdated
+        dto.sortOrder = 2
+        dto.title = "New Title"
+        dto.text = ""
+        dto.noteColor = .blue
+
+        model.update(fromDTO: dto)
+        XCTAssertEqual(model.updatedString, newUpdated.ISO8601Format())
+        XCTAssertEqual(model.sortOrder, 2)
+        XCTAssertEqual(model.title, "New Title")
+        XCTAssertNil(model.text)
+        XCTAssertEqual(model.noteColorName, NoteColor.blue.rawValue)
+        
+    }
+
+    func testNoteDTOCreationFromModel() {
         let model = NoteModel(
             updatedString: TestSupport.updatedDateString,
             sortOrder: 4,
@@ -104,10 +133,11 @@ final class NotesModelDTOTests: XCTestCase {
         )
 
         let newDTO = NoteDTO(fromModel: model)
+        XCTAssertEqual(newDTO.noteId, model.noteId)
         XCTAssertEqual(newDTO.updated, TestSupport.updatedDate)
-        XCTAssertEqual(newDTO.sortOrder, 4)
-        XCTAssertEqual(newDTO.title, "Title 4")
-        XCTAssertEqual(newDTO.text, "Text 4")
+        XCTAssertEqual(newDTO.sortOrder, model.sortOrder)
+        XCTAssertEqual(newDTO.title, model.title)
+        XCTAssertEqual(newDTO.text, model.text)
         XCTAssertEqual(newDTO.noteColor, .blue)
     }
 
@@ -136,7 +166,6 @@ final class NotesModelDTOTests: XCTestCase {
     }
 
     func testNoteModelMutationPersists() throws {
-        let updatedString = TestSupport.updatedDateString
         let newModel = NoteModel(title: "First Title")
 
         context.insert(newModel)
