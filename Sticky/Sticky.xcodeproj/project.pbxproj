@@ -118,9 +118,9 @@
 			children = (
 				04001BE030761221001EFAE4 /* StickyApp.swift */,
 				04001BE230761221001EFAE4 /* ContentView.swift */,
-				04001C203076DDB5001EFAE4 /* Data */,
 				04001C0A3076211D001EFAE4 /* Theme.swift */,
 				04001BE430761224001EFAE4 /* Assets.xcassets */,
+				04001C203076DDB5001EFAE4 /* Data */,
 				04001BE630761224001EFAE4 /* Preview Content */,
 			);
 			path = Sticky;
