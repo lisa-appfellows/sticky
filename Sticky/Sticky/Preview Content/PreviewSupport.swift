@@ -13,8 +13,13 @@ enum PreviewSupport {
     static var modelContainer: ModelContainer {
         DataStore.modelContainer(inMemoryOnly: true)
     }
-    static var defaultViewType: DefaultViewType {
-        .init(defaults: .init(suiteName: "PreviewSupport.\(UUID().uuidString)")!)
+
+    static var userDefaults: UserDefaults {
+        .init(suiteName: "PreviewSupport.\(UUID().uuidString)")!
+    }
+
+    static func sampleNoteDTO(noteColor: NoteColor = .yellow) -> NoteDTO {
+        .init(title: "Sample Note Title", text: "A note to see what a sticky note will look like.", noteColor: noteColor)
     }
 }
 #endif

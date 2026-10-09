@@ -11,17 +11,17 @@ import SwiftUI
 @main
 struct StickyApp: App {
     private let container: ModelContainer
-    @State private var defaultViewType = DefaultViewType()
-
+    
     init() {
         container = DataStore.modelContainer()
     }
-
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SizingContainer {
+                ContentView()
+            }
         }
         .modelContainer(container)
-        .environment(defaultViewType)
     }
 }
