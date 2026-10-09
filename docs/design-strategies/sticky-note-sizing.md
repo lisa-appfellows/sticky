@@ -4,7 +4,7 @@
 
 Sticky notes have three discrete sizes that mirror widget families. Size is chosen from the board's view type and size constraints on ContentView; Widget from widget config. The board should preview the same “paper” the widget will show.
 
-Summary table lives in [design-doc-1.md](/design-doc-1.md) under Sticky Note.
+Summary table lives in [Views & Environments](../product-design/product-views-environments.md) (NoteCard footprints) and [Data Types](../product-design/product-data-types.md) (`ViewType`).
 
 ## Recommendation
 
