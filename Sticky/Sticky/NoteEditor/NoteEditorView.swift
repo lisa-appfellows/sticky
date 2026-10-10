@@ -15,8 +15,12 @@ struct NoteEditorView: View {
     @State private var vm: NoteEditorVM
     @FocusState private var focusField: EditorField?
 
-    init(dto: NoteDTO? = nil, noteColor: NoteColor? = nil) {
-        _vm = State(initialValue: .init(dto: dto, noteColor: noteColor))
+    init(dto: NoteDTO) {
+        _vm = State(initialValue: .init(dto: dto))
+    }
+
+    init(noteColor: NoteColor?) {
+        _vm = State(initialValue: .init(noteColor: noteColor))
     }
 
     var body: some View {
@@ -134,7 +138,7 @@ struct NoteEditorView: View {
 }
 
 #Preview("New Note") {
-    NoteEditorView()
+    NoteEditorView(noteColor: .yellow)
 }
 
 #Preview("Existing Note") {

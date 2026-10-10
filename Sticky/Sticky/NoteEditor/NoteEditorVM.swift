@@ -14,7 +14,6 @@ enum EditorOperation { case save, delete }
 @Observable
 final class NoteEditorVM {
     private let isNew: Bool
-    let defaultedColor: NoteColor
 
     var dto: NoteDTO
     var currentOperation: EditorOperation?
@@ -49,14 +48,14 @@ final class NoteEditorVM {
     
     var canDelete: Bool { !isNew }
     
-    init(dto: NoteDTO? = nil, noteColor: NoteColor? = nil) {
-        self.isNew = dto == nil
-        self.defaultedColor = noteColor ?? .yellow
-        self.dto = dto ?? .init()
+    init(dto: NoteDTO) {
+        self.isNew = false
+        self.dto = dto
+    }
 
-        if self.dto.noteColor != defaultedColor {
-            self.dto.noteColor = defaultedColor
-        }
+    init(noteColor: NoteColor? = nil) {
+        self.isNew = true
+        self.dto = .init(noteColor: noteColor ?? .yellow)
     }
 
     func retryOperation(context: ModelContext) {

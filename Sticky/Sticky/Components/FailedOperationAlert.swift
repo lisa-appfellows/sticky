@@ -52,7 +52,7 @@ private struct TestAlertView: View {
         Button {
             showAlert = true
         } label: {
-            Text("Show Alert")
+            Image(systemName: "hand.tap")
         }
         .failedOperationAlert(
             isPresented: $showAlert,
