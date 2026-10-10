@@ -20,19 +20,35 @@ struct NoteBoardView: View {
         )
     }
 
+    private let boardPadding: CGFloat = 16
+    private var availableCardWidth: CGFloat {
+        screenSize.width - (boardPadding * 2)
+    }
+    
     init(vm: ContentVM) {
-        _notes = Query(filter: vm.predicate)
+        _notes = Query(
+            filter: vm.predicate,
+            sort: [SortDescriptor(\.sortOrder)]
+        )
         _vm = Bindable(vm)
     }
 
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: vm.viewType.noteSpacing) {
-                ForEach(1...20, id: \.self) { _ in
-  
+                ForEach(notes, id: \.self) { note in
+
+                    let dto = note.asDTO
+                    NoteCardView(
+                        dto: dto,
+                        viewType: vm.viewType,
+                        availableWidth: availableCardWidth
+                    )
+                    .noteEditorSheet(.existing(dto))
+    
                 }
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, boardPadding)
         }
         .safeAreaPadding(.top, 24)
     }

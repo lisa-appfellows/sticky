@@ -154,8 +154,8 @@ extension DataStore {
         }
     }
 
-    private static func sortNotesByDate(_ notes: [NoteModel], isNewest: Bool) -> [NoteModel] {
-        notes.sorted {
+    private static func assignSortOrdersByDate(_ notes: [NoteModel], isNewest: Bool) {
+        let sorted = notes.sorted {
             switch ($0.updatedString, $1.updatedString) {
             case let (a?, b?) where a != b:
                 return isNewest ? a > b : a < b
@@ -167,10 +167,6 @@ extension DataStore {
                 return ($0.sortOrder ?? -1) < ($1.sortOrder ?? -1)
             }
         }
-    }
-
-    private static func assignSortOrdersByDate(_ notes: [NoteModel], isNewest: Bool) {
-        let sorted = sortNotesByDate(notes, isNewest: isNewest)
         assignSortOrders(toOrderedNotes: sorted)
     }
 
