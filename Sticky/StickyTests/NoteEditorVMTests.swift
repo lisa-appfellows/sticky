@@ -86,20 +86,24 @@ final class NoteEditorVMTests: XCTestCase {
     }
 
     func testSaveOnExistingShouldUpdateExistingAndDismiss() throws {
-        let dto = NoteDTO(title: "Title B")
+        let today = Date()
+        let yesterday = TestSupport.calendar.date(byAdding: .day, value: -1, to: today)!
+
+        let dto = NoteDTO(updated: yesterday, title: "Title B")
         try DataStore.createNote(from: dto, context: context)
 
-        let firstFetchedNotes = try DataStore.fetchNotes(from: context)
-        let first = try XCTUnwrap(firstFetchedNotes.first)
+        let first = try XCTUnwrap(try DataStore.fetchNotes(from: context).first)
         XCTAssertEqual(first.title, "Title B")
+        XCTAssertTrue(TestSupport.isSameDay(first.asDTO.updated, as: yesterday))
 
         let vm = NoteEditorVM(dto: first.asDTO)
 
         vm.dto.title = "Updated Title"
         vm.save(to: context)
 
-        let secondFetchedNotes = try DataStore.fetchNotes(from: context)
-        XCTAssertEqual(secondFetchedNotes.first?.title, "Updated Title")
+        let second = try XCTUnwrap(try DataStore.fetchNotes(from: context).first)
+        XCTAssertEqual(second.title, "Updated Title")
+        XCTAssertTrue(TestSupport.isSameDay(second.asDTO.updated, as: today))
         XCTAssertTrue(vm.shouldDismiss)
     }
 

@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 
 enum TestSupport {
-    static let gregorianCalendar: Calendar = {
+    static let calendar: Calendar = {
         var cal = Calendar(identifier: .gregorian)
         cal.timeZone = TimeZone(identifier: "UTC")!
         return cal
@@ -35,7 +35,7 @@ enum TestSupport {
         comps.hour = hour
         comps.minute = minute
         comps.second = second
-        return gregorianCalendar.date(from: comps)!
+        return calendar.date(from: comps)!
     }
 
     static func createDateString(
@@ -53,16 +53,16 @@ enum TestSupport {
         comps.hour = hour
         comps.minute = minute
         comps.second = second
-        let date = gregorianCalendar.date(from: comps)!
+        let date = calendar.date(from: comps)!
         return date.ISO8601Format()
     }
 
-    static func sameDay(_ dateA: Date, as dateB: Date) -> Bool {
-        gregorianCalendar.isDate(dateA, equalTo: dateB, toGranularity: .day)
+    static func isSameDay(_ dateA: Date, as dateB: Date) -> Bool {
+        calendar.isDate(dateA, equalTo: dateB, toGranularity: .day)
     }
 
-    static func sameDay(dateString: String, asDate dateB: Date) throws -> Bool {
+    static func isSameDay(dateString: String, asDate dateB: Date) throws -> Bool {
         let dateA = try XCTUnwrap(ISO8601DateFormatter().date(from: dateString))
-        return sameDay(dateA, as: dateB)
+        return isSameDay(dateA, as: dateB)
     }
 }
