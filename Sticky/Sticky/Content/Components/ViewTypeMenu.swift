@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct ViewTypeMenu: View {
-    let selected: ViewType
-    let action: (ViewType) -> Void
+    @Binding var selection: ViewType
 
     var body: some View {
         Menu {
             ForEach(ViewType.allCases, id: \.self) { viewType in
                 Button {
-                    action(viewType)
+                    selection = viewType
                 } label: {
                     HStack {
                         Text(viewType.title)
-                        if viewType == selected {
+                        if viewType == selection {
                             Image(systemName: SystemKey.checkmark)
                         }
                     }
@@ -27,8 +26,9 @@ struct ViewTypeMenu: View {
             }
         } label: {
             HStack {
-                Image(systemName: selected.iconName)
-                Text(selected.title)
+                Image(systemName: selection.iconName)
+                Text(selection.title)
+                    .font(.footnote)
             }
         }
         .buttonStyle(.plain)
@@ -36,5 +36,5 @@ struct ViewTypeMenu: View {
 }
 
 #Preview {
-    ViewTypeMenu(selected: .grid) { viewType in }
+    ViewTypeMenu(selection: .constant(.list))
 }

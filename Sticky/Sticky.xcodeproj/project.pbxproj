@@ -27,17 +27,14 @@
 		04001C28307746C9001EFAE4 /* ContentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C27307746C9001EFAE4 /* ContentVM.swift */; };
 		04001C2F3077482E001EFAE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04001C2E3077482E001EFAE4 /* Localizable.xcstrings */; };
 		04001C3230774851001EFAE4 /* LocalKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C3130774851001EFAE4 /* LocalKey.swift */; };
-		04001C3830774D2F001EFAE4 /* CleanUpOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C3730774D2F001EFAE4 /* CleanUpOption.swift */; };
 		04001C3A30774D48001EFAE4 /* NoteColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C3930774D48001EFAE4 /* NoteColor.swift */; };
 		04001C3C30774D6C001EFAE4 /* NoteFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C3B30774D6C001EFAE4 /* NoteFont.swift */; };
 		04001C3E30774DA5001EFAE4 /* NoteFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C3D30774DA5001EFAE4 /* NoteFontModifier.swift */; };
 		04001C4030774DC9001EFAE4 /* NoteColor+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C3F30774DC9001EFAE4 /* NoteColor+UI.swift */; };
-		04001C4230774DF0001EFAE4 /* CleanUpOption+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C4130774DF0001EFAE4 /* CleanUpOption+UI.swift */; };
 		04001C4630774E36001EFAE4 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C4530774E36001EFAE4 /* ViewType.swift */; };
 		04001C483077502E001EFAE4 /* ContentVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C473077502E001EFAE4 /* ContentVMTests.swift */; };
 		04001C4A30775411001EFAE4 /* NoteEditorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C4930775411001EFAE4 /* NoteEditorVM.swift */; };
 		04001C4E30776494001EFAE4 /* ColorSortPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C4D30776494001EFAE4 /* ColorSortPicker.swift */; };
-		04001C5030776510001EFAE4 /* CleanUpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C4F30776510001EFAE4 /* CleanUpMenu.swift */; };
 		04001C5230776BCC001EFAE4 /* ViewTypeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C5130776BCC001EFAE4 /* ViewTypeMenu.swift */; };
 		04001C5430782D76001EFAE4 /* BottomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C5330782D76001EFAE4 /* BottomToolbar.swift */; };
 		04001C5730782FC2001EFAE4 /* NoteEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C5630782FC2001EFAE4 /* NoteEditorSheet.swift */; };
@@ -55,6 +52,11 @@
 		04001C7D3079CA2E001EFAE4 /* CharacterLimiting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C7C3079CA2E001EFAE4 /* CharacterLimiting.swift */; };
 		04001C7F3079CA54001EFAE4 /* EditorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C7E3079CA54001EFAE4 /* EditorField.swift */; };
 		04001C813079CE37001EFAE4 /* FailedOperationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C803079CE37001EFAE4 /* FailedOperationAlert.swift */; };
+		04001C83307ACE05001EFAE4 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C82307ACE05001EFAE4 /* SortOption.swift */; };
+		04001C85307ACE4F001EFAE4 /* SortOptionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C84307ACE4F001EFAE4 /* SortOptionMenu.swift */; };
+		04001C87307ACFA0001EFAE4 /* NoteBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C86307ACFA0001EFAE4 /* NoteBoardVM.swift */; };
+		04001C89307AD494001EFAE4 /* NoteBoardVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C88307AD494001EFAE4 /* NoteBoardVMTests.swift */; };
+		04001C8C307AD94A001EFAE4 /* DefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C8B307AD94A001EFAE4 /* DefaultsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,17 +100,14 @@
 		04001C27307746C9001EFAE4 /* ContentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentVM.swift; sourceTree = "<group>"; };
 		04001C2E3077482E001EFAE4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		04001C3130774851001EFAE4 /* LocalKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKey.swift; sourceTree = "<group>"; };
-		04001C3730774D2F001EFAE4 /* CleanUpOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanUpOption.swift; sourceTree = "<group>"; };
 		04001C3930774D48001EFAE4 /* NoteColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteColor.swift; sourceTree = "<group>"; };
 		04001C3B30774D6C001EFAE4 /* NoteFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFont.swift; sourceTree = "<group>"; };
 		04001C3D30774DA5001EFAE4 /* NoteFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFontModifier.swift; sourceTree = "<group>"; };
 		04001C3F30774DC9001EFAE4 /* NoteColor+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteColor+UI.swift"; sourceTree = "<group>"; };
-		04001C4130774DF0001EFAE4 /* CleanUpOption+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CleanUpOption+UI.swift"; sourceTree = "<group>"; };
 		04001C4530774E36001EFAE4 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		04001C473077502E001EFAE4 /* ContentVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentVMTests.swift; sourceTree = "<group>"; };
 		04001C4930775411001EFAE4 /* NoteEditorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorVM.swift; sourceTree = "<group>"; };
 		04001C4D30776494001EFAE4 /* ColorSortPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSortPicker.swift; sourceTree = "<group>"; };
-		04001C4F30776510001EFAE4 /* CleanUpMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanUpMenu.swift; sourceTree = "<group>"; };
 		04001C5130776BCC001EFAE4 /* ViewTypeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTypeMenu.swift; sourceTree = "<group>"; };
 		04001C5330782D76001EFAE4 /* BottomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolbar.swift; sourceTree = "<group>"; };
 		04001C5630782FC2001EFAE4 /* NoteEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorSheet.swift; sourceTree = "<group>"; };
@@ -126,6 +125,11 @@
 		04001C7C3079CA2E001EFAE4 /* CharacterLimiting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLimiting.swift; sourceTree = "<group>"; };
 		04001C7E3079CA54001EFAE4 /* EditorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorField.swift; sourceTree = "<group>"; };
 		04001C803079CE37001EFAE4 /* FailedOperationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedOperationAlert.swift; sourceTree = "<group>"; };
+		04001C82307ACE05001EFAE4 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
+		04001C84307ACE4F001EFAE4 /* SortOptionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionMenu.swift; sourceTree = "<group>"; };
+		04001C86307ACFA0001EFAE4 /* NoteBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBoardVM.swift; sourceTree = "<group>"; };
+		04001C88307AD494001EFAE4 /* NoteBoardVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBoardVMTests.swift; sourceTree = "<group>"; };
+		04001C8B307AD94A001EFAE4 /* DefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +182,6 @@
 			children = (
 				04001BE030761221001EFAE4 /* StickyApp.swift */,
 				04001C2C307747EE001EFAE4 /* Content */,
-				04001C7B3079C9D0001EFAE4 /* Components */,
 				04001C203076DDB5001EFAE4 /* DataStore */,
 				04001C3330774CCF001EFAE4 /* Domain */,
 				04001C4B3077646F001EFAE4 /* NoteBoard */,
@@ -187,6 +190,7 @@
 				04001BE630761224001EFAE4 /* Preview Content */,
 				04001C2D3077481E001EFAE4 /* Resources */,
 				04001C58307842C7001EFAE4 /* Sizing */,
+				04001C8A307AD939001EFAE4 /* Storage */,
 			);
 			path = Sticky;
 			sourceTree = "<group>";
@@ -207,6 +211,7 @@
 				04001C473077502E001EFAE4 /* ContentVMTests.swift */,
 				04001C1A30763996001EFAE4 /* DataStoreTests.swift */,
 				04001C6330786B76001EFAE4 /* LocalKeyTests.swift */,
+				04001C88307AD494001EFAE4 /* NoteBoardVMTests.swift */,
 				04001C6730787291001EFAE4 /* NoteCardVMTests.swift */,
 				04001C6530786FFF001EFAE4 /* NoteEditorVMTests.swift */,
 				04001C1630762F85001EFAE4 /* NotesModelDTOTests.swift */,
@@ -237,6 +242,7 @@
 			children = (
 				04001C21307743D9001EFAE4 /* NoteEditorView.swift */,
 				04001C4930775411001EFAE4 /* NoteEditorVM.swift */,
+				04001C8E307AE00C001EFAE4 /* Components */,
 			);
 			path = NoteEditor;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 			children = (
 				04001C27307746C9001EFAE4 /* ContentVM.swift */,
 				04001BE230761221001EFAE4 /* ContentView.swift */,
+				04001C8D307ADFED001EFAE4 /* Components */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -262,7 +269,6 @@
 		04001C3330774CCF001EFAE4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				04001C3730774D2F001EFAE4 /* CleanUpOption.swift */,
 				04001C7E3079CA54001EFAE4 /* EditorField.swift */,
 				04001C3930774D48001EFAE4 /* NoteColor.swift */,
 				04001C0E30762B2A001EFAE4 /* NoteModel.swift */,
@@ -275,12 +281,12 @@
 			isa = PBXGroup;
 			children = (
 				04001C7C3079CA2E001EFAE4 /* CharacterLimiting.swift */,
-				04001C4130774DF0001EFAE4 /* CleanUpOption+UI.swift */,
 				04001C793079B2E3001EFAE4 /* EditorFieldable.swift */,
 				04001C3130774851001EFAE4 /* LocalKey.swift */,
 				04001C3F30774DC9001EFAE4 /* NoteColor+UI.swift */,
 				04001C3B30774D6C001EFAE4 /* NoteFont.swift */,
 				04001C3D30774DA5001EFAE4 /* NoteFontModifier.swift */,
+				04001C82307ACE05001EFAE4 /* SortOption.swift */,
 				04001C5D307866D0001EFAE4 /* SystemKey.swift */,
 				04001C4530774E36001EFAE4 /* ViewType.swift */,
 			);
@@ -290,6 +296,7 @@
 		04001C4B3077646F001EFAE4 /* NoteBoard */ = {
 			isa = PBXGroup;
 			children = (
+				04001C86307ACFA0001EFAE4 /* NoteBoardVM.swift */,
 				04001C2530774425001EFAE4 /* NoteBoardView.swift */,
 				04001C4C30776480001EFAE4 /* NoteCard */,
 			);
@@ -299,8 +306,8 @@
 		04001C4C30776480001EFAE4 /* NoteCard */ = {
 			isa = PBXGroup;
 			children = (
-				04001C2330774409001EFAE4 /* NoteCardView.swift */,
 				04001C5F307868C8001EFAE4 /* NoteCardVM.swift */,
+				04001C2330774409001EFAE4 /* NoteCardView.swift */,
 			);
 			path = NoteCard;
 			sourceTree = "<group>";
@@ -314,18 +321,33 @@
 			path = Sizing;
 			sourceTree = "<group>";
 		};
-		04001C7B3079C9D0001EFAE4 /* Components */ = {
+		04001C8A307AD939001EFAE4 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				04001C8B307AD94A001EFAE4 /* DefaultsStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		04001C8D307ADFED001EFAE4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				04001C5330782D76001EFAE4 /* BottomToolbar.swift */,
+				04001C4D30776494001EFAE4 /* ColorSortPicker.swift */,
+				04001C84307ACE4F001EFAE4 /* SortOptionMenu.swift */,
+				04001C5130776BCC001EFAE4 /* ViewTypeMenu.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		04001C8E307AE00C001EFAE4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				04001C69307963A0001EFAE4 /* BodyEditor.swift */,
-				04001C5330782D76001EFAE4 /* BottomToolbar.swift */,
-				04001C4F30776510001EFAE4 /* CleanUpMenu.swift */,
-				04001C4D30776494001EFAE4 /* ColorSortPicker.swift */,
 				04001C803079CE37001EFAE4 /* FailedOperationAlert.swift */,
 				04001C70307996BF001EFAE4 /* NoteColorSelector.swift */,
 				04001C5630782FC2001EFAE4 /* NoteEditorSheet.swift */,
 				04001C6D30796E1D001EFAE4 /* TitleField.swift */,
-				04001C5130776BCC001EFAE4 /* ViewTypeMenu.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -462,7 +484,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04001C4230774DF0001EFAE4 /* CleanUpOption+UI.swift in Sources */,
 				04001C28307746C9001EFAE4 /* ContentVM.swift in Sources */,
 				04001C22307743D9001EFAE4 /* NoteEditorView.swift in Sources */,
 				04001BE330761221001EFAE4 /* ContentView.swift in Sources */,
@@ -473,9 +494,10 @@
 				04001C1530762EDE001EFAE4 /* PreviewSupport.swift in Sources */,
 				04001C7A3079B2E3001EFAE4 /* EditorFieldable.swift in Sources */,
 				04001C60307868C8001EFAE4 /* NoteCardVM.swift in Sources */,
-				04001C5030776510001EFAE4 /* CleanUpMenu.swift in Sources */,
+				04001C83307ACE05001EFAE4 /* SortOption.swift in Sources */,
 				04001C7D3079CA2E001EFAE4 /* CharacterLimiting.swift in Sources */,
 				04001C1330762D9A001EFAE4 /* DataStore.swift in Sources */,
+				04001C85307ACE4F001EFAE4 /* SortOptionMenu.swift in Sources */,
 				04001C7F3079CA54001EFAE4 /* EditorField.swift in Sources */,
 				04001C5A307842DA001EFAE4 /* ScreenSizeKey.swift in Sources */,
 				04001C3E30774DA5001EFAE4 /* NoteFontModifier.swift in Sources */,
@@ -484,12 +506,13 @@
 				04001C813079CE37001EFAE4 /* FailedOperationAlert.swift in Sources */,
 				04001C6E30796E1D001EFAE4 /* TitleField.swift in Sources */,
 				04001C1130762BA8001EFAE4 /* NoteDTO.swift in Sources */,
+				04001C8C307AD94A001EFAE4 /* DefaultsStorage.swift in Sources */,
 				04001C4A30775411001EFAE4 /* NoteEditorVM.swift in Sources */,
+				04001C87307ACFA0001EFAE4 /* NoteBoardVM.swift in Sources */,
 				04001C5E307866D0001EFAE4 /* SystemKey.swift in Sources */,
 				04001C1F3076DD85001EFAE4 /* DataStore+Setup.swift in Sources */,
 				04001C3C30774D6C001EFAE4 /* NoteFont.swift in Sources */,
 				04001C2630774425001EFAE4 /* NoteBoardView.swift in Sources */,
-				04001C3830774D2F001EFAE4 /* CleanUpOption.swift in Sources */,
 				04001C5230776BCC001EFAE4 /* ViewTypeMenu.swift in Sources */,
 				04001C4630774E36001EFAE4 /* ViewType.swift in Sources */,
 				04001C3230774851001EFAE4 /* LocalKey.swift in Sources */,
@@ -510,6 +533,7 @@
 				04001C6630786FFF001EFAE4 /* NoteEditorVMTests.swift in Sources */,
 				04001C6430786B76001EFAE4 /* LocalKeyTests.swift in Sources */,
 				04001C1730762F85001EFAE4 /* NotesModelDTOTests.swift in Sources */,
+				04001C89307AD494001EFAE4 /* NoteBoardVMTests.swift in Sources */,
 				04001C483077502E001EFAE4 /* ContentVMTests.swift in Sources */,
 				04001C1B30763996001EFAE4 /* DataStoreTests.swift in Sources */,
 			);

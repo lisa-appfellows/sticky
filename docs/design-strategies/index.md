@@ -10,6 +10,6 @@ Implementation notes for harder SwiftUI / SwiftData problems. These are **not** 
 
 ## How to use these
 
-- Product *what* lives in [product design](../product-design/index.md)
+- Product *what* lives in [product design](../product-design/index.md) (V1: display sort + color filter; no persisted cleanup)
 - Strategies are *how* for a specific constraint — keep them when shipping that version
 - Prefer linking from the roadmap over copying constraints into the product index

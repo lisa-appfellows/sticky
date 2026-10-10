@@ -18,18 +18,15 @@ struct ContentView: View {
                     .padding(.top, 24)
                     .padding(.bottom)
                 Divider()
-                NoteBoardView(vm: vm)
+                NoteBoardView(contentVM: vm)
+                    .id(vm.colorFilter)
             }
             .background(Color.appBackground.ignoresSafeArea())
             .safeAreaInset(edge: .bottom) {
                 BottomToolbar {
-                    ViewTypeMenu(selected: vm.viewType) { viewType in
-                        vm.setViewType(viewType)
-                    }
+                    ViewTypeMenu(selection: $vm.viewType)
                 } trailing: {
-                    CleanUpMenu { option in
-                        vm.cleanUpOptionSelected(option, context: context)
-                    }
+                    SortOptionMenu(selection: $vm.sortOption)
                 }
             }
             .toolbar {
@@ -45,12 +42,6 @@ struct ContentView: View {
                 }
             }
         }
-        .failedOperationAlert(
-            isPresented: $vm.shouldShowAlert,
-            title: LocalKey.cleanUpAlertTitle,
-            retryAction: { vm.retryOperation(context: context) },
-            cancelAction: { vm.cancelOperation() }
-        )
     }
 }
 

@@ -10,45 +10,50 @@ import SwiftUI
 
 struct NoteBoardView: View {
     @Environment(\.screenSize) private var screenSize
-    @Bindable var vm: ContentVM
+    @Bindable var contentVM: ContentVM
+
     @Query private var notes: [NoteModel]
+    private let vm = NoteBoardVM()
 
     private var columns: [GridItem] {
         Array(
             repeating: GridItem(.flexible()),
-            count: vm.viewType == .grid ? 2 : 1
+            count: vm.numOfColumns(for: contentVM.viewType)
         )
     }
 
-    private let boardPadding: CGFloat = 16
-    private var availableCardWidth: CGFloat {
-        screenSize.width - (boardPadding * 2)
+    private var spacing: CGFloat {
+        contentVM.viewType.noteSpacing
+    }
+
+    private var sortedNotes: [NoteModel] {
+        vm.sorted(notes, by: contentVM.sortOption)
     }
     
-    init(vm: ContentVM) {
+    init(contentVM: ContentVM) {
         _notes = Query(
-            filter: vm.predicate,
+            filter: contentVM.predicate,
             sort: [SortDescriptor(\.sortOrder)]
         )
-        _vm = Bindable(vm)
+        _contentVM = Bindable(contentVM)
     }
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: vm.viewType.noteSpacing) {
-                ForEach(notes, id: \.self) { note in
+            LazyVGrid(columns: columns, spacing: spacing) {
+                ForEach(sortedNotes, id: \.self) { note in
 
                     let dto = note.asDTO
                     NoteCardView(
                         dto: dto,
-                        viewType: vm.viewType,
-                        availableWidth: availableCardWidth
+                        viewType: contentVM.viewType,
+                        availableWidth: vm.availableCardWidth(for: screenSize)
                     )
                     .noteEditorSheet(.existing(dto))
     
                 }
             }
-            .padding(.horizontal, boardPadding)
+            .padding(.horizontal, vm.horizontalPadding)
         }
         .safeAreaPadding(.top, 24)
     }
@@ -59,7 +64,7 @@ struct NoteBoardView: View {
     SizingContainer {
         NavigationStack {
             NoteBoardView(
-                vm: ContentVM(defaults: PreviewSupport.userDefaults)
+                contentVM: ContentVM(defaults: PreviewSupport.userDefaults)
             )
         }
     }

@@ -69,108 +69,6 @@
         }
       }
     },
-    "cleanUp.key" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clean Up"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ordenar"
-          }
-        }
-      }
-    },
-    "cleanUpAlertTitle.key" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Couldn't clean up the board"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se pudo ordenar el tablero"
-          }
-        }
-      }
-    },
-    "cleanUpColor.key" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clean up by color"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ordenar por color"
-          }
-        }
-      }
-    },
-    "cleanUpName.key" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clean up by name"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ordenar por nombre"
-          }
-        }
-      }
-    },
-    "cleanUpNewest.key" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clean up by newest"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ordenar por más recientes"
-          }
-        }
-      }
-    },
-    "cleanUpOldest.key" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clean up by oldest"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ordenar por más antiguas"
-          }
-        }
-      }
-    },
     "compact.key" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -255,9 +153,6 @@
           }
         }
       }
-    },
-    "Done" : {
-
     },
     "done.key" : {
       "extractionState" : "manual",
@@ -378,6 +273,40 @@
         }
       }
     },
+    "name.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
+          }
+        }
+      }
+    },
+    "newest.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Newest"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más recientes"
+          }
+        }
+      }
+    },
     "note.key" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -408,6 +337,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Color de la nota"
+          }
+        }
+      }
+    },
+    "oldest.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldest"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más antiguas"
           }
         }
       }

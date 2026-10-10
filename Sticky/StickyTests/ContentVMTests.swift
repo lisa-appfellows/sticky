@@ -9,124 +9,80 @@ import SwiftData
 import XCTest
 @testable import Sticky
 
-@MainActor
 final class ContentVMTests: XCTestCase {
-    private var container: ModelContainer!
-    private var context: ModelContext!
-
-    private var defaultsSuiteName: String!
-    private var defaults: UserDefaults!
-
     private var vm: ContentVM!
+    private var defaults: UserDefaults!
+    private var suiteName: String!
 
     override func setUp() {
         super.setUp()
-        container = DataStore.modelContainer(inMemoryOnly: true)
-        context = container.mainContext
+        let suiteName = "ContentVMTests_\(UUID().uuidString)"
+        self.suiteName = suiteName
 
-        let suiteName = "ContentVM_\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suiteName)!
-
-        self.defaultsSuiteName = suiteName
         self.defaults = defaults
 
-        self.vm = .init(defaults: defaults)
+        self.vm = ContentVM(defaults: defaults)
     }
 
     override func tearDown() {
-        container = nil
-        context = nil
-        defaults.removePersistentDomain(forName: defaultsSuiteName)
-        defaultsSuiteName = nil
-        defaults = nil
-        vm = nil
+        defaults.removePersistentDomain(forName: suiteName)
         super.tearDown()
     }
 
-    func testViewTypeSavesToDefaultsOnSet() {
-        XCTAssertEqual(vm.viewType, .list)
+    func testColorFilterSavesToDefaultsOnSetOfValid() throws {
+        let storage = DefaultsStorage.noteColor
+        
+        XCTAssertNil(vm.colorFilter, "Should default to nil with no prior save")
 
-        vm.setViewType(.grid)
-        XCTAssertEqual(vm.viewType, .grid)
+        vm.colorFilter = .blue
+        let saved = try XCTUnwrap(NoteColor(rawValue: storage.load(from: defaults)))
+        XCTAssertEqual(saved, .blue, "Should have saved `blue` on assignment")
 
         let newVM = ContentVM(defaults: defaults)
-        XCTAssertEqual(newVM.viewType, .grid)
+        XCTAssertEqual(newVM.colorFilter, .blue, "Should have loaded last previous save on new init")
     }
 
-    func testCleanUpNewestShouldSortByNewestDate() throws {
-        try seedStore()
-        vm.cleanUpOptionSelected(.newest, context: context)
+    func testColorFilterRemovesPreviousValueFromDefaultsOnNilSet() throws {
+        let storage = DefaultsStorage.noteColor
+        
+        XCTAssertNil(vm.colorFilter, "Should default to nil with no prior save")
 
-        let fetchedNotes = try DataStore.fetchNotes(from: context)
-        let sorted = sortNotes(fetchedNotes)
+        vm.colorFilter = .blue
+        let savedBlue = try XCTUnwrap(NoteColor(rawValue: storage.load(from: defaults)))
+        XCTAssertEqual(savedBlue, .blue, "Should have saved `blue` on assignment")
 
-        XCTAssertEqual(sorted.count, 5)
-        // Seed days 0...4 → newest puts day 4 at sortOrder 0
-        for (index, model) in sorted.enumerated() {
-            let day = sorted.count - 1 - index
-            let expected = TestSupport.createDate(year: 2026, month: 1, day: day)
-            XCTAssertEqual(model.updatedString, expected.ISO8601Format())
-        }
+        vm.colorFilter = nil
+        let removed = NoteColor(rawValue: storage.load(from: defaults))
+        XCTAssertNil(removed, "Should have removed `blue` on nil assignment")
+
+        let newVM = ContentVM(defaults: defaults)
+        XCTAssertNil(newVM.colorFilter, "Should have registered previous removal on new init")
     }
 
-    func testCleanUpOldestShouldSortByOldestDate() throws {
-        try seedStore()
-        vm.cleanUpOptionSelected(.oldest, context: context)
+    func testSortOptionSavesToDefaultsOnSet() throws {
+        let storage = DefaultsStorage.sortOption
+        
+        XCTAssertEqual(vm.sortOption, .newest, "Should default to `newest` with no prior save")
 
-        let fetchedNotes = try DataStore.fetchNotes(from: context)
-        let sorted = sortNotes(fetchedNotes)
+        vm.sortOption = .name
+        let saved = try XCTUnwrap(SortOption(rawValue: storage.load(from: defaults)))
+        XCTAssertEqual(saved, .name, "Should have saved `name` on assignment")
 
-        XCTAssertEqual(sorted.count, 5)
-        for (index, model) in sorted.enumerated() {
-            let expected = TestSupport.createDate(year: 2026, month: 1, day: index)
-            XCTAssertEqual(model.updatedString, expected.ISO8601Format())
-        }
+        let newVM = ContentVM(defaults: defaults)
+        XCTAssertEqual(newVM.sortOption, .name, "Should have loaded last previous save on new init")
     }
 
-    func testCleanUpByNameShouldSortByName() throws {
-        try seedStore()
-        vm.cleanUpOptionSelected(.name, context: context)
+    func testViewTypeSavesToDefaultsOnSet() throws {
+        let storage = DefaultsStorage.viewType
+        
+        XCTAssertEqual(vm.viewType, .list, "Should default to `list` with no prior save")
 
-        let fetchedNotes = try DataStore.fetchNotes(from: context)
-        let sorted = sortNotes(fetchedNotes)
+        vm.viewType = .grid
+        let saved = try XCTUnwrap(ViewType(rawValue: storage.load(from: defaults)))
+        XCTAssertEqual(saved, .grid, "Should have saved `grid` on assignment")
 
-        XCTAssertEqual(sorted.count, 5)
-        for (index, model) in sorted.enumerated() {
-            XCTAssertEqual(model.title, "Title \(index)")
-        }
-    }
-
-    func testCleanUpColorShouldSortByColor() throws {
-        try seedStore()
-        vm.cleanUpOptionSelected(.color, context: context)
-
-        let fetchedNotes = try DataStore.fetchNotes(from: context)
-        let sorted = sortNotes(fetchedNotes)
-
-        XCTAssertEqual(sorted.count, 5)
-
-        let noteColors = NoteColor.allCases
-        for (index, model) in sorted.enumerated() {
-            let expected = noteColors[index]
-            XCTAssertEqual(model.noteColorName, expected.rawValue)
-        }
-    }
-}
-
-// MARK: - Helper
-extension ContentVMTests {
-    private func seedStore() throws {
-        for (index, noteColor) in NoteColor.allCases.enumerated() {
-            let newDTO = NoteDTO(
-                updated: TestSupport.createDate(year: 2026, month: 1, day: index),
-                title: "Title \(index)",
-                noteColor: noteColor
-            )
-            try DataStore.createNote(from: newDTO, context: context)
-        }
-    }
-
-    private func sortNotes(_ notes: [NoteModel]) -> [NoteModel] {
-        notes.sorted { ($0.sortOrder ?? -1) < ($1.sortOrder ?? -1) }
+        let newVM = ContentVM(defaults: defaults)
+        XCTAssertEqual(newVM.viewType, .grid, "Should have loaded last previous save on new init")
     }
 }

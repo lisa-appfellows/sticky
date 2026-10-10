@@ -23,7 +23,7 @@ final class NotesModelDTOTests: XCTestCase {
     func testNoteDTODefaultCreation() {
         let dto = NoteDTO()
         XCTAssertTrue(
-            TestSupport.gregorianCalendar
+            TestSupport.calendar
                 .isDate(dto.updated, inSameDayAs: Date())
         )
         XCTAssertEqual(dto.sortOrder, -1)
@@ -53,7 +53,7 @@ final class NotesModelDTOTests: XCTestCase {
         let newModel = NoteModel()
         
         let updatedString = try XCTUnwrap(newModel.updatedString)
-        XCTAssertTrue(try TestSupport.sameDay(dateString: updatedString, asDate: Date()))
+        XCTAssertTrue(try TestSupport.isSameDay(dateString: updatedString, asDate: Date()))
         XCTAssertEqual(newModel.sortOrder, -1)
         XCTAssertNil(newModel.title)
         XCTAssertNil(newModel.text)

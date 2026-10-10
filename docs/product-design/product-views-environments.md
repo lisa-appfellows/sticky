@@ -15,13 +15,20 @@ No system-blue tint on board chrome — menus and Save/Cancel stay plain.
 ### `ContentView`
 
 - Top nav (brand + create), `ColorSortPicker`, `NoteBoardView`, `BottomToolbar`
-- Owns `ContentVM` (view type, color filter / predicate)
+- Owns `ContentVM` (view type, color filter / predicate, sort option)
+- `NoteBoardView` is `.id(colorFilter)` so `@Query` rebuilds when the filter changes
 
 ### `NoteBoardView`
 
-- Builds `@Query` from the injected predicate
+- `@Query` filtered by `ContentVM.predicate`, sorted by `sortOrder` (secondary / future drag)
+- Display order: `NoteBoardVM.sorted(_:by:)` using `ContentVM.sortOption`
 - `LazyVGrid` columns from `ViewType` (1 column list/compact, 2 column grid)
-- Renders `NoteCardView` via `NoteEditorLink`
+- Renders `NoteCardView` via `noteEditorSheet`
+
+### `NoteBoardVM`
+
+- Column count, horizontal padding, card width math
+- In-memory sort for `SortOption` (newest / oldest / name)
 
 ### `NoteCardView`
 
@@ -41,17 +48,25 @@ Fixed height; overflow truncates. Board proportions stay related to future widge
 
 - Create and edit share one sheet; work on a `NoteDTO`, apply on Save / Delete
 - Top: Cancel / Save (plain; Save semibold)
-- Color swatches (rounded rects, checkmark on selection; default `.yellow` on create)
-- Title `TextField`; body field (TextEditor + character limit on the next polish branch)
+- Color swatches (rounded rects, checkmark on selection; default `.yellow` on create, or seed from board filter)
+- `TitleField` (limit 45) + `BodyEditor` (limit 450)
 - Updated / created date line
 - Delete only when editing (not on create)
+- Save / delete failures → system alert (Retry / Cancel)
 
 ## Color filter — `ColorSortPicker`
 
 - Horizontal pill strip: **All** (`nil`) + each `NoteColor`
-- Filters the board only — does **not** rewrite `sortOrder`; cleanup still owns order
+- Filters the board only — does **not** change persisted note data or `sortOrder`
+- Sort mode still applies to whatever the filter shows
 - Selection scrolls into view (`ScrollViewReader` / `scrollTo`); scroll does not change the filter
 - Empty (filtered) CTA: “No [color] notes”
+
+## Sort — `SortOptionMenu`
+
+- Bottom-trailing menu: Newest / Oldest / Name
+- Display-only; persisted preference via `DefaultsStorage.sortOption`
+- Default: Newest
 
 ## Empty states
 
@@ -62,10 +77,10 @@ Fixed height; overflow truncates. Board proportions stay related to future widge
 
 ## Wrappers
 
-### `NoteEditorLink`
+### `noteEditorSheet` / editor link
 
 - Tap target + sheet presentation
-- Wraps note cards; `newEditor` is the toolbar `+`
+- Wraps note cards; toolbar `+` opens create (optional color seed from filter)
 
 ### `SizingContainer`
 

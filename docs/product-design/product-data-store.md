@@ -8,7 +8,7 @@ SwiftData persistence. Prefer optionals on the model where fields may deprecate 
 | -------- | ---- | ----- |
 | `noteId` | `String` | Default `UUID().uuidString` |
 | `updatedString` | `String?` | ISO8601 |
-| `sortOrder` | `Int?` | `-1` / unset until sorted |
+| `sortOrder` | `Int?` | Default `-1`; unused by V1 display sort; reserved for V2 drag reorder |
 | `title` | `String?` | |
 | `text` | `String?` | |
 | `noteColorName` | `String?` | Default yellow raw value |
@@ -31,8 +31,11 @@ Struct for create / edit. Apply to the context on Save or Delete.
 
 - `asModel` → `NoteModel`
 - `init(fromModel:)`
+- Edit save refreshes `updated` so newest / oldest stay meaningful
 
 ## `DataStore`
+
+CRUD + fetch only. Board order is **not** persisted here — see `NoteBoardVM` + `SortOption`.
 
 ### Setup
 
@@ -45,23 +48,18 @@ Struct for create / edit. Apply to the context on Save or Delete.
 - `updateNote(from:context:)` — throws if note missing
 - `deleteNote(byNoteId:context:)` — throws if note missing
 
-### Sort
-
-- `resortModels(byCleanUp:context:)` — full board reorder + save
-- `resortNote(atNoteId:to:context:)` — remove → insert → reindex + save
-
-**Semantics:** Cleanup replaces global order. Color filter on the board does not change `sortOrder`. Within a cleanup pass, previous `sortOrder` is only a tiebreaker.
-
 ### Fetch
 
 - `fetchNoteCount(from:)`
 - `fetchNotes(from:)`
 - `fetchNote(byNoteId:context:)` → `NoteModel?`
 
-## UserDefaults
+## `DefaultsStorage`
 
-| Key | Type | Values |
-| --- | ---- | ------ |
-| `defaultViewType` | `String` | `ViewType.rawValue` (`list` / `compact` / `grid`) |
+UserDefaults keys owned by `ContentVM`. Pattern: `defaults_<case>`.
 
-Owned by `ContentVM`; defaults to `.list` when unset / unknown.
+| Case | Key | Values | Default when unset |
+| ---- | --- | ------ | ------------------ |
+| `noteColor` | `defaults_noteColor` | `NoteColor.rawValue` or removed for All | All (`nil`) |
+| `sortOption` | `defaults_sortOption` | `newest` / `oldest` / `name` | `.newest` |
+| `viewType` | `defaults_viewType` | `list` / `compact` / `grid` | `.list` |
