@@ -6,7 +6,7 @@ Domain enums stay UI-free where possible; presentation (titles, colors, fonts) l
 
 Layout mode for the board. UI labels are list / compact / grid — not small / medium / large.
 
-- `rawValue`: `String` (persisted in UserDefaults)
+- `rawValue`: `String` (persisted via `DefaultsStorage.viewType`)
 - `title`: `LocalizedStringResource`
 - `iconName`: SF Symbol via `SystemKey`
 - `noteSpacing`: `CGFloat` = `12`
@@ -22,16 +22,16 @@ Sizing / fonts for cards are derived from `ViewType` (former `NoteSize` merged i
 ## `NoteColor`
 
 - `rawValue`: `String`
-- `sortPriority`: `Int` (cleanup-by-color)
+- `sortPriority`: `Int` — on the type for future use; **not** used by V1 board sort
 - Presentation: `title`, `color` (`Color` from asset catalog)
 
-| Case | Hex (approx) | Light opacity | Dark opacity | Sort priority |
-| ---- | ------------ | ------------- | ------------ | ------------- |
-| `blue` | `#02E4F6` | ~35% | 100% | 0 |
-| `green` | `#32F206` | ~35% | 100% | 1 |
-| `yellow` | `#E2F008` | ~35% | 100% | 2 |
-| `pink` | `#EE08CD` | ~35% | 100% | 3 |
-| `purple` | `#8606F4` | ~35% | 100% | 4 |
+| Case | Hex (approx) | Light opacity | Dark opacity |
+| ---- | ------------ | ------------- | ------------ |
+| `blue` | `#02E4F6` | ~35% | 100% |
+| `green` | `#32F206` | ~35% | 100% |
+| `yellow` | `#E2F008` | ~35% | 100% |
+| `pink` | `#EE08CD` | ~35% | 100% |
+| `purple` | `#8606F4` | ~35% | 100% |
 
 Light mode stays soft paper washes; dark mode uses full pads. Opacity lives in the colorsets.
 
@@ -50,16 +50,21 @@ View modifier for note title/body on cards and in the editor.
 
 Titles use bold; body regular. Scaled relative to `.title2` / `.body`.
 
-## `CleanUpOption`
+## `SortOption`
+
+Display-only board order. Persisted via `DefaultsStorage.sortOption`. Default: `.newest`.
 
 - `rawValue`: `String`
-- `title`: localized via `LocalKey` (not `rawValue.capitalized`)
+- `title`: localized via `LocalKey`
 
 | Case | Sorts by |
 | ---- | -------- |
 | `newest` | `updatedString` (newest first) |
 | `oldest` | `updatedString` (oldest first) |
-| `name` | `title ?? text` (localized compare); undated/unnamed last; ties → `sortOrder` |
-| `color` | `NoteColor.sortPriority`; unknown/nil color last; ties → `sortOrder` |
+| `name` | `title ?? text` (localized compare) |
 
-Each cleanup pass is a **new primary sort** and rewrites dense `sortOrder`. Prior order is only a secondary key inside that pass.
+**Rules (all cases):**
+
+- Applied in memory by `NoteBoardVM` after `@Query` — does **not** rewrite `sortOrder` on models
+- Nil / missing primary keys sort last
+- Ties → `sortOrder` (stable-ish secondary; often `-1` until V2 drag)

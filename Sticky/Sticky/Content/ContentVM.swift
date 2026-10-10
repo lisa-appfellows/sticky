@@ -10,13 +10,25 @@ import SwiftUI
 
 @Observable
 final class ContentVM {
-    private static let viewTypeKey = "defaultViewType"
     private let defaults: UserDefaults
 
-    var colorFilter: NoteColor?
-    var currentOperation: CleanUpOption?
-    var shouldShowAlert = false
-    private(set) var viewType: ViewType
+    var colorFilter: NoteColor? {
+        didSet {
+           saveNoteColor(colorFilter)
+        }
+    }
+
+    var sortOption: SortOption {
+        didSet {
+            saveSortOption(sortOption)
+        }
+    }
+
+    var viewType: ViewType {
+        didSet {
+            saveViewType(viewType)
+        }
+    }
 
     var predicate: Predicate<NoteModel>? {
         guard let colorFilterName = colorFilter?.rawValue else {
@@ -27,35 +39,25 @@ final class ContentVM {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-
-        let rawViewType = defaults.string(forKey: Self.viewTypeKey)
-        self.viewType = ViewType(rawValue: rawViewType ?? "") ?? .list
+        self.colorFilter = .init(rawValue: DefaultsStorage.noteColor.load(from: defaults))
+        self.sortOption = .init(rawValue: DefaultsStorage.sortOption.load(from: defaults)) ?? .newest
+        self.viewType = .init(rawValue: DefaultsStorage.viewType.load(from: defaults)) ?? .list
     }
 
-    func retryOperation(context: ModelContext) {
-        if shouldShowAlert { shouldShowAlert = false }
-        guard let currentOperation else { return }
-
-        cleanUpOptionSelected(currentOperation, context: context)
-    }
-
-    func cleanUpOptionSelected(_ option: CleanUpOption, context: ModelContext) {
-        currentOperation = option
-
-        do {
-            try DataStore.resortModels(byCleanUp: option, context: context)
-        } catch {
-            // TODO: Logging and Banner presentation
-            shouldShowAlert = true
+    private func saveNoteColor(_ noteColor: NoteColor?) {
+        let storage = DefaultsStorage.noteColor
+        if let noteColor {
+            storage.set(noteColor.rawValue, to: defaults)
+        } else {
+            storage.remove(from: defaults)
         }
     }
 
-    func cancelOperation() {
-        currentOperation = nil
+    private func saveSortOption(_ option: SortOption) {
+        DefaultsStorage.sortOption.set(option.rawValue, to: defaults)
     }
 
-    func setViewType(_ viewType: ViewType) {
-        defaults.set(viewType.rawValue, forKey: Self.viewTypeKey)
-        self.viewType = viewType
+    private func saveViewType(_ viewType: ViewType) {
+        DefaultsStorage.viewType.set(viewType.rawValue, to: defaults)
     }
 }

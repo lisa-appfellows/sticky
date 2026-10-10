@@ -77,6 +77,7 @@ final class NoteEditorVM {
             if isNew {
                 try DataStore.createNote(from: dto, context: context)
             } else {
+                dto.updated = .now
                 try DataStore.updateNote(from: dto, context: context)
             }
             shouldDismiss = true

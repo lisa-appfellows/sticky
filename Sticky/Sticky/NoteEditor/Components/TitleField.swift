@@ -61,7 +61,7 @@ struct TestTitleFieldContainer: View {
                     Button {
                         focusedField = nil
                     } label: {
-                        Text("Done")
+                        Text(LocalKey.done)
                     }
                 }
         }
