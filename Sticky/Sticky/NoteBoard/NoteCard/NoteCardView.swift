@@ -29,6 +29,7 @@ struct NoteCardView: View {
                     .foregroundStyle(.appSecondary)
             }
             .foregroundStyle(.black)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .frame(
                 width: vm.adjustedWidth(availableWidth),

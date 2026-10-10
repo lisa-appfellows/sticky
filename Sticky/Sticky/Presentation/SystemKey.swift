@@ -15,4 +15,5 @@ enum SystemKey {
     static let rectangleSplit1x2 = "rectangle.split.1x2"
     static let squareGrid2x2 = "square.grid.2x2"
     static let trash = "trash"
+    static let xmarkCircleFill = "xmark.circle.fill"
 }

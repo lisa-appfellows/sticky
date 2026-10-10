@@ -9,93 +9,81 @@ import SwiftUI
 
 @MainActor
 struct NoteEditorView: View {
+    @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
-    @State private var vm: NoteEditorVM
 
-    init(dto: NoteDTO? = nil) {
-        _vm = State(initialValue: .init(dto: dto))
+    @State private var vm: NoteEditorVM
+    @FocusState private var focusField: EditorField?
+
+    init(dto: NoteDTO? = nil, noteColor: NoteColor? = nil) {
+        _vm = State(initialValue: .init(dto: dto, noteColor: noteColor))
     }
 
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    HStack(spacing: 18) {
-                        ForEach(NoteColor.allCases, id: \.self) { noteColor in
-                            Button {
-                                vm.dto.noteColor = noteColor
-                            } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 2)
-                                        .fill(noteColor.color)
-                                    if vm.noteColorIsSelected(noteColor) {
-                                        Image(systemName: SystemKey.checkmark)
-                                            .foregroundStyle(.black)
-                                    }
-                                }
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                    .listRowBackground(Color.clear)
+                    NoteColorSelector(selection: $vm.dto.noteColor)
+                        .listRowBackground(Color.clear)
                 } header: {
                     Text(LocalKey.noteColor)
                 }
 
                 Section {
-                    Group {
-                        TextField(text: $vm.dto.title) {
-                            Text(LocalKey.enterTitlePlaceholder)
-                                .foregroundStyle(.appSecondary)
-                        }
-                        .noteFont(.mediumTitle)
-                        TextField(text: $vm.dto.text, axis: .vertical) {
-                            Text(LocalKey.enterTextPlaceholder)
-                                .foregroundStyle(.appSecondary)
-                        }
-                        .lineLimit(15...28)
-                        .noteFont(.mediumText)
+                    VStack(alignment: .leading, spacing: 8) {
+                        TitleField(
+                            LocalKey.enterTitlePlaceholder,
+                            text: $vm.dto.title,
+                            focusBinding: $focusField
+                        )
+                        Divider()
+                        BodyEditor(
+                            LocalKey.enterTextPlaceholder,
+                            text: $vm.dto.text,
+                            focusBinding: $focusField
+                        )
+                        Divider()
                         Text(vm.dateString)
                             .font(.caption)
                             .foregroundStyle(.appSecondary)
+                            .padding(.bottom, 8)
                     }
                     .foregroundStyle(.black)
                     .listRowBackground(vm.rowBackgroundColor)
                 } header: {
-                    Text(LocalKey.note)
+                    HStack {
+                        Text(LocalKey.note)
+                        Spacer()
+                        if focusField != nil {
+                            doneButton
+                        }
+                    }
+                    .frame(height: 25)
                 }
 
                 if vm.canDelete {
-                    HStack {
-                        Spacer()
-                        Button(role: .destructive, action: { delete() }) {
-                            HStack(spacing: 8) {
-                                Image(systemName: SystemKey.trash)
-                                Text(LocalKey.deleteNote)
-                            }
-                            .font(.footnote)
-                            .padding(.horizontal)
-                            .frame(height: 44)
-                            .background(Color.red.opacity(0.1))
-                            .clipShape(RoundedRectangle(cornerRadius: 2))
-                        }
-                        Spacer()
-                    }
-                    .listRowBackground(Color.clear)
+                    deleteNoteView
+                        .listRowBackground(Color.clear)
                 }
-                
+            }
+            .onChange(of: vm.shouldDismiss) { _, shouldDismiss in
+                if shouldDismiss { dismiss() }
             }
             .navigationTitle(Text(vm.navTitle))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(action: { dismiss() }) {
+                    Button {
+                        dismiss()
+                    } label: {
                         Text(LocalKey.cancel)
                     }
                     .buttonStyle(.plain)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(action: { save() }) {
+                    Button {
+                        vm.save(to: context)
+                    } label: {
                         Text(LocalKey.save)
                             .fontWeight(.semibold)
                     }
@@ -103,16 +91,45 @@ struct NoteEditorView: View {
                 }
             }
         }
+        .failedOperationAlert(
+            isPresented: $vm.shouldShowAlert,
+            title: vm.failedOperationTitle,
+            retryAction: { vm.retryOperation(context: context) },
+            cancelAction: { vm.cancelOperation() }
+        )
+
     }
 
-    private func save() {
-        // TODO: Save action
-        dismiss()
+    private var doneButton: some View {
+        Button {
+            focusField = nil
+        } label: {
+            Text(LocalKey.done)
+                .textCase(.none)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundStyle(.black)
+        }
     }
 
-    private func delete() {
-        // TODO: Delete note
-        dismiss()
+    private var deleteNoteView: some View {
+        HStack {
+            Spacer()
+            Button(role: .destructive) {
+                vm.delete(from: context)
+            } label: {
+                HStack {
+                    Image(systemName: SystemKey.trash)
+                    Text(LocalKey.deleteNote)
+                }
+                .font(.footnote)
+                .padding(.horizontal)
+                .frame(height: 44)
+                .background(Color.red.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 2))
+            }
+            Spacer()
+        }
     }
 }
 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var context
     @State private var vm = ContentVM()
 
     var body: some View {
@@ -27,7 +28,7 @@ struct ContentView: View {
                     }
                 } trailing: {
                     CleanUpMenu { option in
-                        vm.cleanUpOptionSelected(option)
+                        vm.cleanUpOptionSelected(option, context: context)
                     }
                 }
             }
@@ -39,10 +40,17 @@ struct ContentView: View {
                 }
 
                 ToolbarItem(placement: .topBarTrailing) {
-                    NoteEditorLink.newEditor
+                    Image(systemName: SystemKey.plus)
+                        .noteEditorSheet(.new(vm.colorFilter))
                 }
             }
         }
+        .failedOperationAlert(
+            isPresented: $vm.shouldShowAlert,
+            title: LocalKey.cleanUpAlertTitle,
+            retryAction: { vm.retryOperation(context: context) },
+            cancelAction: { vm.cancelOperation() }
+        )
     }
 }
 
