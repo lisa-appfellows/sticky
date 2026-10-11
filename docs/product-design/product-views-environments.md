@@ -15,26 +15,29 @@ No system-blue tint on board chrome — menus and Save/Cancel stay plain.
 ### `ContentView`
 
 - Top nav (brand + create), `ColorSortPicker`, `NoteBoardView`, `BottomToolbar`
-- Owns `ContentVM` (view type, color filter / predicate, sort option)
-- `NoteBoardView` is `.id(colorFilter)` so `@Query` rebuilds when the filter changes
+- Owns `ContentVM` (view type, color filter, sort option) and editor sheet item
+- Passes `colorFilter` into `NoteBoardView` so `@Query` rebuilds when the filter changes
 
 ### `NoteBoardView`
 
-- `@Query` filtered by `ContentVM.predicate`, sorted by `sortOrder` (secondary / future drag)
-- Display order: `NoteBoardVM.sorted(_:by:)` using `ContentVM.sortOption`
-- `LazyVGrid` columns from `ViewType` (1 column list/compact, 2 column grid)
-- Renders `NoteCardView` via `noteEditorSheet`
+- `@Query` built from `colorFilter` init param; Query sort on `sortOrder` (secondary / future drag)
+- Display order: `NoteBoardLayout.sorted(_:by:)` using `ContentVM.sortOption`
+- Empty board → `EmptyNotesView` (filter-aware title + create CTA)
+- Otherwise `LazyVGrid` columns from `ViewType` (1 column list/compact, 2 column grid)
+- Card tap / empty CTA / toolbar `+` set `NoteEditorSheet` on `ContentView`
 
-### `NoteBoardVM`
+### `NoteBoardLayout`
 
 - Column count, horizontal padding, card width math
 - In-memory sort for `SortOption` (newest / oldest / name)
 
-### `NoteCardView`
+### `NoteCardView` / `NoteCardLayout`
 
 - Shows title, text, updated line
 - Tap → edit sheet
 - Footprint from `ViewType` + available width (`ScreenSizeKey`)
+- Card is its own button (`editorSheet` binding); VoiceOver: one label (title/body/color/date) + edit hint
+- Label composition lives on `NoteCardLayout.accessibilityLabel(locale:)` (unit-tested)
 
 | ViewType | Footprint |
 | -------- | --------- |
@@ -42,7 +45,7 @@ No system-blue tint on board chrome — menus and Save/Cancel stay plain.
 | `compact` | Full width × short (~2:1) |
 | `grid` | Half width × short (~1:1 cell) |
 
-Fixed height; overflow truncates. Board proportions stay related to future widgets — not pixel-identical. See [Sticky Note Sizing](../design-strategies/sticky-note-sizing.md).
+Fixed height; overflow uses `lineLimit` + ellipsis (fade deferred to V2). Board proportions stay related to future widgets — not pixel-identical. See [Sticky Note Sizing](../design-strategies/sticky-note-sizing.md).
 
 ### `NoteEditorView`
 
@@ -59,8 +62,22 @@ Fixed height; overflow truncates. Board proportions stay related to future widge
 - Horizontal pill strip: **All** (`nil`) + each `NoteColor`
 - Filters the board only — does **not** change persisted note data or `sortOrder`
 - Sort mode still applies to whatever the filter shows
-- Selection scrolls into view (`ScrollViewReader` / `scrollTo`); scroll does not change the filter
-- Empty (filtered) CTA: “No [color] notes”
+- Selection scrolls into view (`ScrollViewReader` / `scrollTo`); respects Reduce Motion; scroll does not change the filter
+- Empty filtered board uses color-specific title (see Empty states)
+- VoiceOver: color name + selected state; filter hint on the strip
+
+## Accessibility (V1)
+
+Pass complete for soak. Intentional leans:
+
+| Area | V1 choice |
+| ---- | --------- |
+| Contrast | Dark pink/purple pastel pads + black ink; `appSecondary` ~55% dark; filter selection without muddy unselected opacity |
+| Overflow | Card title/body `lineLimit` + ellipsis (fade → V2) |
+| Motion | Filter `scrollTo` gated on Reduce Motion |
+| Dynamic Type | Fixed card/editor footprints; larger reading via `ViewType` (list / compact) |
+| VoiceOver | Cards, filter pills, color swatches, empty CTA, sort/view menus — string labels where composite `Text` failed |
+| Tests | `NoteCardLayout` accessibility label builders (not a11y key catalogs) |
 
 ## Sort — `SortOptionMenu`
 
@@ -68,19 +85,23 @@ Fixed height; overflow truncates. Board proportions stay related to future widge
 - Display-only; persisted preference via `DefaultsStorage.sortOption`
 - Default: Newest
 
-## Empty states
+## Empty states — `EmptyNotesView`
 
-| State | CTA |
-| ----- | --- |
-| No notes | “Create a note to get started.” |
-| Filter has no matches | “No [color] notes” |
+`ContentUnavailableView` with title, shared message, and create action (sheet seeded from current filter color when set).
+
+| State | Title | Message | Action |
+| ----- | ----- | ------- | ------ |
+| All / no notes | “No Notes” | “Create a note to get started.” | “Create Note” (outlined) |
+| Filter has no matches | “No [color] Notes” | same | “Create Note” (filled with filter color) |
+
+Localized `en` / `es` via `LocalKey.emptyNotesTitle`, `emptyColorNotesTitle(for:)`, `emptyNotesMessage`, `createNote`. Shared “get started” message is intentional for color filters too (getting started in that color).
 
 ## Wrappers
 
-### `noteEditorSheet` / editor link
+### `noteEditorSheet(item:)`
 
-- Tap target + sheet presentation
-- Wraps note cards; toolbar `+` opens create (optional color seed from filter)
+- `ContentView` owns `@State` sheet item and presents via `.noteEditorSheet(item:)`
+- Call sites assign `.new(color?)` or `.existing(dto)` — no Button wrapper on cards
 
 ### `SizingContainer`
 

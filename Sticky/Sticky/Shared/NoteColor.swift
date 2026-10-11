@@ -1,5 +1,5 @@
 //
-//  NoteColor+UI.swift
+//  NoteColor.swift
 //  Sticky
 //
 //  Created by Lisa Fellows on 2026-10-07.
@@ -7,7 +7,13 @@
 
 import SwiftUI
 
-extension NoteColor {
+enum NoteColor: String, CaseIterable {
+    case blue
+    case green
+    case yellow
+    case pink
+    case purple
+
     var title: LocalizedStringResource {
         switch self {
         case .blue: return LocalKey.blue

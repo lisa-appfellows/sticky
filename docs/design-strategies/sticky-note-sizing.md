@@ -8,7 +8,7 @@ Summary table lives in [Views & Environments](../product-design/product-views-en
 
 ## Recommendation
 
-Use **fixed note footprints** and **fixed height with truncate with fade**. Do not use variable-height cells.
+Use **fixed note footprints** and **fixed height with truncate**. V1 uses ellipsis (`lineLimit`); fade is deferred to V2. Do not use variable-height cells.
 
 Variable height fights discrete S/M/L and “fonts relative to size”: size becomes “how much you typed,” a 2-column board gets ragged rows, and the widget cannot grow with content—board and widget diverge.
 
@@ -49,7 +49,7 @@ flowchart LR
 
 - **Primary board:** 2-column grid with the spans above (pinboard, widget-aligned).
 - **Optional compact list:** same three fixed heights at **full width** (small becomes a short full-width bar, or list shows only medium/large). Do **not** use variable height in either mode.
-- Overflow: truncate with fade or scroll **inside** the note; do not grow the cell.
+- Overflow: truncate with ellipsis (V1) or fade (V2) **inside** the note; do not grow the cell.
 
 
 

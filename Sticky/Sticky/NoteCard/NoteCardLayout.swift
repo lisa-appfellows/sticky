@@ -1,5 +1,5 @@
 //
-//  NoteCardVM.swift
+//  NoteCardLayout.swift
 //  Sticky
 //
 //  Created by Lisa Fellows on 2026-10-08.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NoteCardVM {
+struct NoteCardLayout {
     private let dto: NoteDTO
     private let viewType: ViewType
 
@@ -39,6 +39,32 @@ struct NoteCardVM {
             time: .omitted
         )
         return LocalKey.updated(withDateString: dateString)
+    }
+
+    /// Plain string — VoiceOver often ignores composite `Text` labels and falls back to children.
+    func accessibilityLabel(locale: Locale = .autoupdatingCurrent) -> String {
+        var parts: [String] = []
+        if !title.isEmpty {
+            parts.append(title)
+        }
+        if !text.isEmpty {
+            parts.append(text)
+        }
+        if parts.isEmpty {
+            parts.append(localized(LocalKey.note, locale: locale))
+        }
+        parts.append(localized(dto.noteColor.title, locale: locale))
+        parts.append(localized(dateString, locale: locale))
+        return parts.joined(separator: ", ")
+    }
+
+    private func localized(
+        _ resource: LocalizedStringResource,
+        locale: Locale
+    ) -> String {
+        var localizedResource = resource
+        localizedResource.locale = locale
+        return String(localized: localizedResource)
     }
 
     init(dto: NoteDTO, viewType: ViewType) {

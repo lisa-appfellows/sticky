@@ -32,6 +32,7 @@ struct ViewTypeMenu: View {
             }
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(String(localized: LocalKey.viewTypeMenu(for: selection)))
     }
 }
 

@@ -30,22 +30,24 @@ struct TitleField: View, EditorFieldable {
     
     var body: some View {
         HStack(alignment: .bottom) {
-            TextField(text: text, axis: .vertical) { Text(placeholder) }
-                .lineLimit(2...2)
-                .noteFont(.mediumTitle)
-                .focused(focusBinding, equals: field)
-                .onChange(of: text.wrappedValue) { _, newText in
-                    clampText(newText)
-                }
+            TextField(text: text, axis: .vertical) {
+                Text(placeholder)
+                    .foregroundStyle(.appSecondary)
+            }
+            .lineLimit(2)
+            .noteFont(.mediumTitle)
+            .focused(focusBinding, equals: field)
+            .onChange(of: text.wrappedValue) { _, newText in
+                clampText(newText)
+            }
             Text(charCounterText)
                 .font(.caption)
                 .foregroundStyle(.appSecondary)
-            
+                .accessibilityHidden(true)
         }
+        .frame(minHeight: 44, alignment: .bottom)
     }
 }
-
-
 
 #if DEBUG
 struct TestTitleFieldContainer: View {
@@ -54,16 +56,20 @@ struct TestTitleFieldContainer: View {
 
     var body: some View {
         NavigationStack {
-            TitleField(LocalKey.enterTextPlaceholder, text: $text, focusBinding: $focusedField)
-                .background(Color.appBlue)
-                .padding()
-                .toolbar {
-                    Button {
-                        focusedField = nil
-                    } label: {
-                        Text(LocalKey.done)
-                    }
+            TitleField(
+                LocalKey.enterTextPlaceholder,
+                text: $text,
+                focusBinding: $focusedField
+            )
+            .background(Color.appBlue)
+            .padding()
+            .toolbar {
+                Button {
+                    focusedField = nil
+                } label: {
+                    Text(LocalKey.done)
                 }
+            }
         }
     }
 }

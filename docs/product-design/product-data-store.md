@@ -35,7 +35,7 @@ Struct for create / edit. Apply to the context on Save or Delete.
 
 ## `DataStore`
 
-CRUD + fetch only. Board order is **not** persisted here — see `NoteBoardVM` + `SortOption`.
+CRUD + fetch only. Board order is **not** persisted here — see `NoteBoardLayout` + `SortOption`.
 
 ### Setup
 
@@ -54,9 +54,9 @@ CRUD + fetch only. Board order is **not** persisted here — see `NoteBoardVM` +
 - `fetchNotes(from:)`
 - `fetchNote(byNoteId:context:)` → `NoteModel?`
 
-## `DefaultsStorage`
+## `DefaultsStorage` (`Content/`)
 
-UserDefaults keys owned by `ContentVM`. Pattern: `defaults_<case>`.
+UserDefaults keys owned by `ContentVM` (lives next to it under `Content/`). Pattern: `defaults_<case>`.
 
 | Case | Key | Values | Default when unset |
 | ---- | --- | ------ | ------------------ |

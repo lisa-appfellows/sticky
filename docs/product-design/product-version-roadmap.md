@@ -2,7 +2,7 @@
 
 | Version | State | Features |
 | ------- | ----- | -------- |
-| **V1** | Active | CRUD; light + dark (asset catalogs); display sort + color filter; ViewType layouts; character limits; portrait-locked iPhone |
+| **V1** | Active | CRUD; light + dark (asset catalogs); display sort + color filter; ViewType layouts; character limits; accessibility pass; portrait-locked iPhone |
 | **V2** | Planned | Drag / dropDestination reorder; iPad + dual orientation (iPhone stays portrait) |
 | **V3** | Planned | Home Screen widget (one note, three sizes) |
 | **V4** | Possible | iCloud sync |
@@ -14,6 +14,7 @@
 - Board sort: newest / oldest / name (display only; default newest)
 - Localized UI (en / es)
 - Character limits for title (45) and body (450)
+- Accessibility pass: contrast, VoiceOver labels, Reduce Motion, card ellipsis; Dynamic Type via `ViewType` (fixed card/editor footprints)
 
 ## Explicitly not V1
 

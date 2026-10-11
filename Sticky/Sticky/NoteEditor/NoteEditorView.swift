@@ -50,6 +50,7 @@ struct NoteEditorView: View {
                         Text(vm.dateString)
                             .font(.caption)
                             .foregroundStyle(.appSecondary)
+                            .frame(height: 35)
                             .padding(.bottom, 8)
                     }
                     .foregroundStyle(.black)
@@ -112,8 +113,8 @@ struct NoteEditorView: View {
                 .textCase(.none)
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .foregroundStyle(.black)
         }
+        .buttonStyle(.plain)
     }
 
     private var deleteNoteView: some View {

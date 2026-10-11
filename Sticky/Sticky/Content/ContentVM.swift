@@ -5,12 +5,13 @@
 //  Created by Lisa Fellows on 2026-10-07.
 //
 
-import SwiftData
 import SwiftUI
 
 @Observable
 final class ContentVM {
     private let defaults: UserDefaults
+
+    var editorSheet: NoteEditorSheet?
 
     var colorFilter: NoteColor? {
         didSet {
@@ -28,13 +29,6 @@ final class ContentVM {
         didSet {
             saveViewType(viewType)
         }
-    }
-
-    var predicate: Predicate<NoteModel>? {
-        guard let colorFilterName = colorFilter?.rawValue else {
-            return nil
-        }
-        return #Predicate { $0.noteColorName == colorFilterName }
     }
 
     init(defaults: UserDefaults = .standard) {

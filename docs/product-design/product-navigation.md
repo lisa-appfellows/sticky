@@ -7,7 +7,7 @@ One page. Sheets for create and edit — no secondary destinations in V1.
 | Item | Placement | Symbol | Presentation |
 | ---- | --------- | ------ | ------------ |
 | Brand (“Sticky”) | leading | — (serif text) | — |
-| Create note | trailing | `plus` | Sheet (`noteEditorSheet`) |
+| Create note | trailing | `plus` | Sheet (`NoteEditorSheet` item on `ContentView`) |
 
 ## Bottom toolbar
 

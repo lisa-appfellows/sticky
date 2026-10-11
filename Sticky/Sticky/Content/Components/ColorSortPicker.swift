@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ColorSortPicker: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Binding var selection: NoteColor?
 
     var body: some View {
@@ -26,8 +27,12 @@ struct ColorSortPicker: View {
             }
             .safeAreaPadding(.horizontal, 24)
             .onChange(of: selection) { _, newSelection in
-                withAnimation {
+                if reduceMotion {
                     proxy.scrollTo(newSelection, anchor: .center)
+                } else {
+                    withAnimation {
+                        proxy.scrollTo(newSelection, anchor: .center)
+                    }
                 }
             }
         }
@@ -51,33 +56,38 @@ private struct ColorSortPill: View {
                 )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(pillAccessibilityLabel)
+        .accessibilityHint(String(localized: LocalKey.a11yFilterHint))
+    }
+
+    private var pillAccessibilityLabel: String {
+        let name = String(localized: noteColor?.title ?? LocalKey.all)
+        guard isSelected else { return name }
+        return "\(name), \(String(localized: LocalKey.a11ySelected))"
     }
 
     private func didSelect() {
         selection = noteColor
     }
 
-    private var isSelected: Bool {
-        selection == noteColor
-    }
+    private var isNil: Bool { noteColor == nil }
+    private var isSelected: Bool { selection == noteColor }
 
     private var foreground: Color {
-        (noteColor == nil ? Color.primary : .black)
-            .opacity(isSelected ? 1 : 0.4)
+        isNil ? Color.primary : .black
     }
 
     private var background: Color {
         guard let noteColor else { return .appBackground }
-        return noteColor.color.opacity(isSelected ? 1 : 0.4)
+        return noteColor.color.opacity(isSelected ? 1 : 0.65)
     }
 
     private var stroke: Color {
-        (noteColor?.color ?? .primary)
-            .opacity(isSelected ? 1 : 0.4)
+        noteColor?.color ?? .primary
     }
 
     private var strokeWidth: CGFloat {
-        noteColor == nil ? 1 : 0
+        isSelected ? 2 : (isNil ? 0.2 : 0)
     }
 }
 
