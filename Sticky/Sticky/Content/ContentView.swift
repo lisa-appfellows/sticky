@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var context
     @State private var vm = ContentVM()
 
     var body: some View {
@@ -18,8 +17,11 @@ struct ContentView: View {
                     .padding(.top, 24)
                     .padding(.bottom)
                 Divider()
-                NoteBoardView(contentVM: vm)
-                    .id(vm.colorFilter)
+                NoteBoardView(
+                    contentVM: vm,
+                    colorFilter: vm.colorFilter,
+                    editorSheet: $vm.editorSheet
+                )
             }
             .background(Color.appBackground.ignoresSafeArea())
             .safeAreaInset(edge: .bottom) {
@@ -34,13 +36,21 @@ struct ContentView: View {
                     Text(LocalKey.sticky)
                         .tracking(1.4)
                         .font(.system(.body, design: .serif, weight: .semibold))
+                        .accessibilityAddTraits(.isHeader)
                 }
 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Image(systemName: SystemKey.plus)
-                        .noteEditorSheet(.new(vm.colorFilter))
+                    Button {
+                        vm.editorSheet = .new(vm.colorFilter)
+                    } label: {
+                        Image(systemName: SystemKey.plus)
+                            .accessibilityHidden(true)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(String(localized: LocalKey.createNote))
                 }
             }
+            .noteEditorSheet(item: $vm.editorSheet)
         }
     }
 }

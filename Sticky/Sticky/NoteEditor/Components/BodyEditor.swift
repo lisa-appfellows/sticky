@@ -34,31 +34,31 @@ struct BodyEditor: View, EditorFieldable {
     }
 
     var body: some View {
-        VStack {
-            ZStack {
-                if shouldShowPlaceholder {
-                    Text(placeholder)
-                        .noteFont(.mediumText)
-                        .foregroundStyle(.appSecondary)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                }
-
-                TextEditor(text: text)
+        ZStack(alignment: .bottomTrailing) {
+            if shouldShowPlaceholder {
+                Text(placeholder)
                     .noteFont(.mediumText)
-                    .scrollContentBackground(.hidden)
-                    .focused(focusBinding, equals: field)
-                    .onChange(of: text.wrappedValue) { _, newText in
-                        clampText(newText)
-                    }
+                    .foregroundStyle(.appSecondary)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
-            .frame(height: 240)
-                HStack {
-                    Spacer()
-                    Text(charCounterText)
-                        .font(.caption)
-                        .foregroundStyle(.appSecondary)
+
+            TextEditor(text: text)
+                .noteFont(.mediumText)
+                .scrollContentBackground(.hidden)
+                .focused(focusBinding, equals: field)
+                .onChange(of: text.wrappedValue) { _, newText in
+                    clampText(newText)
                 }
+                .padding(.bottom, 20)
+
+            Text(charCounterText)
+                .font(.caption)
+                .foregroundStyle(.appSecondary)
+                .padding(.trailing, 4)
+                .padding(.bottom, 2)
+                .accessibilityHidden(true)
         }
+        .frame(height: 240)
     }
 }
 

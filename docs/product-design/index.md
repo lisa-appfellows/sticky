@@ -10,9 +10,9 @@ V1 ships the core loop on a portrait iPhone. Drag reorder, iPad, and widgets lan
 | --- | --- |
 | [Version roadmap](product-version-roadmap.md) | V1–V4 scope and what’s deferred |
 | [Navigation](product-navigation.md) | Toolbars, sheet editing, one-page flow |
-| [Views & environments](product-views-environments.md) | Main views, wrappers, sizing, empty states, color filter + sort |
+| [Views & environments](product-views-environments.md) | Main views, wrappers, sizing, empty states, color filter + sort, accessibility |
 | [Data types](product-data-types.md) | ViewType, NoteColor, NoteFont, SortOption |
-| [Data store](product-data-store.md) | NoteModel / NoteDTO, CRUD, fetch, DefaultsStorage |
+| [Data store](product-data-store.md) | NoteModel / NoteDTO, DataStore CRUD/fetch; DefaultsStorage under Content |
 
 ## Product rules (short)
 

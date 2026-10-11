@@ -6,7 +6,7 @@
 
 `List` + `.onMove` supports reordering, but that is list-only — not a grid.
 
-**V1 note:** Board order is display-only (`SortOption` via `NoteBoardVM`). `NoteModel.sortOrder` stays on the model for this V2 path — drag should rewrite dense `sortOrder`, not fight the named sort modes (treat manual order as its own mode when drag ships).
+**V1 note:** Board order is display-only (`SortOption` via `NoteBoardLayout`). `NoteModel.sortOrder` stays on the model for this V2 path — drag should rewrite dense `sortOrder`, not fight the named sort modes (treat manual order as its own mode when drag ships).
 
 ## Required data for `.draggable` / `.dropDestination`
 

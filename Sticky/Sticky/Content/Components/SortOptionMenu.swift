@@ -32,5 +32,6 @@ struct SortOptionMenu: View {
             }
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(String(localized: LocalKey.sortMenu(for: selection)))
     }
 }

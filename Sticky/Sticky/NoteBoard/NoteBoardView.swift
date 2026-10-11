@@ -11,14 +11,15 @@ import SwiftUI
 struct NoteBoardView: View {
     @Environment(\.screenSize) private var screenSize
     @Bindable var contentVM: ContentVM
+    @Binding var editorSheet: NoteEditorSheet?
 
     @Query private var notes: [NoteModel]
-    private let vm = NoteBoardVM()
+    private let layout = NoteBoardLayout()
 
     private var columns: [GridItem] {
         Array(
             repeating: GridItem(.flexible()),
-            count: vm.numOfColumns(for: contentVM.viewType)
+            count: layout.numOfColumns(for: contentVM.viewType)
         )
     }
 
@@ -27,35 +28,52 @@ struct NoteBoardView: View {
     }
 
     private var sortedNotes: [NoteModel] {
-        vm.sorted(notes, by: contentVM.sortOption)
+        layout.sorted(notes, by: contentVM.sortOption)
     }
-    
-    init(contentVM: ContentVM) {
+
+    init(
+        contentVM: ContentVM,
+        colorFilter: NoteColor?,
+        editorSheet: Binding<NoteEditorSheet?>
+    ) {
+        _contentVM = Bindable(contentVM)
+        _editorSheet = editorSheet
+
+        let predicate: Predicate<NoteModel>?
+        if let colorFilterName = colorFilter?.rawValue {
+            predicate = #Predicate { $0.noteColorName == colorFilterName }
+        } else {
+            predicate = nil
+        }
+
         _notes = Query(
-            filter: contentVM.predicate,
+            filter: predicate,
             sort: [SortDescriptor(\.sortOrder)]
         )
-        _contentVM = Bindable(contentVM)
     }
 
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(sortedNotes, id: \.self) { note in
-
-                    let dto = note.asDTO
-                    NoteCardView(
-                        dto: dto,
-                        viewType: contentVM.viewType,
-                        availableWidth: vm.availableCardWidth(for: screenSize)
-                    )
-                    .noteEditorSheet(.existing(dto))
-    
+        if sortedNotes.isEmpty {
+            EmptyNotesView(
+                noteColor: contentVM.colorFilter,
+                editorSheet: $editorSheet
+            )
+        } else {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: spacing) {
+                    ForEach(sortedNotes, id: \.self) { note in
+                        NoteCardView(
+                            dto: note.asDTO,
+                            viewType: contentVM.viewType,
+                            availableWidth: layout.availableCardWidth(for: screenSize),
+                            editorSheet: $editorSheet
+                        )
+                    }
                 }
+                .padding(.horizontal, layout.horizontalPadding)
             }
-            .padding(.horizontal, vm.horizontalPadding)
+            .safeAreaPadding(.top, 24)
         }
-        .safeAreaPadding(.top, 24)
     }
 }
 
@@ -64,7 +82,9 @@ struct NoteBoardView: View {
     SizingContainer {
         NavigationStack {
             NoteBoardView(
-                contentVM: ContentVM(defaults: PreviewSupport.userDefaults)
+                contentVM: ContentVM(defaults: PreviewSupport.userDefaults),
+                colorFilter: nil,
+                editorSheet: .constant(nil)
             )
         }
     }

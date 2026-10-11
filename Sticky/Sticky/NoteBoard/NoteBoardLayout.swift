@@ -1,5 +1,5 @@
 //
-//  NoteBoardVM.swift
+//  NoteBoardLayout.swift
 //  Sticky
 //
 //  Created by Lisa Fellows on 2026-10-10.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NoteBoardVM {
+struct NoteBoardLayout {
     let horizontalPadding: CGFloat = 16
 
     func numOfColumns(for viewType: ViewType) -> Int {

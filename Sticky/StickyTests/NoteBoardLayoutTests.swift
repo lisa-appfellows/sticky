@@ -1,5 +1,5 @@
 //
-//  NoteBoardVMTests.swift
+//  NoteBoardLayoutTests.swift
 //  StickyTests
 //
 //  Created by Lisa Fellows on 2026-10-10.
@@ -8,12 +8,12 @@
 import XCTest
 @testable import Sticky
 
-final class NoteBoardVMTests: XCTestCase {
-    private var sut: NoteBoardVM!
+final class NoteBoardLayoutTests: XCTestCase {
+    private var sut: NoteBoardLayout!
 
     override func setUp() {
         super.setUp()
-        sut = NoteBoardVM()
+        sut = NoteBoardLayout()
     }
 
     override func tearDown() {
@@ -34,7 +34,7 @@ final class NoteBoardVMTests: XCTestCase {
 }
 
 // MARK: - Sort Updated
-extension NoteBoardVMTests {
+extension NoteBoardLayoutTests {
     func testSortNewestShouldReturnSortedByNewest() {
         let notes = testNotes.shuffled()
 
@@ -104,7 +104,7 @@ extension NoteBoardVMTests {
 }
 
 // MARK: - Sort Name
-extension NoteBoardVMTests {
+extension NoteBoardLayoutTests {
     func testSortNameShouldReturnSortedByName() {
         let notes = testNotes.shuffled()
 

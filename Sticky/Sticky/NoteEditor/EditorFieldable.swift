@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+enum EditorField { case title, text }
+
 protocol EditorFieldable: CharacterLimiting {
     var placeholder: LocalizedStringResource { get }
     var text: Binding<String> { get }
