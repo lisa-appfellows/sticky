@@ -1,669 +1,754 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "alertMessage.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "An unknown error has occurred. Please try again."
+  "sourceLanguage" : "en",
+  "strings" : {
+    "a11yCharLimitHint.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum %lld characters"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ha ocurrido un error desconocido. Inténtalo de nuevo."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Máximo %lld caracteres"
           }
         }
       }
     },
-    "all.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "All"
+    "a11yCharLimitReached.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Character limit reached"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todas"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Límite de caracteres alcanzado"
           }
         }
       }
     },
-    "blue.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blue"
+    "a11yEditNoteHint.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opens the note editor."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Azul"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre el editor de la nota."
           }
         }
       }
     },
-    "cancel.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancel"
+    "a11yFilterHint.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filters the board by this color."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancelar"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtra el tablero por este color."
           }
         }
       }
     },
-    "compact.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compact"
+    "a11yNoteColorHint.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sets the note color."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compacto"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Establece el color de la nota."
           }
         }
       }
     },
-    "createdFormat.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Created: %@"
+    "a11ySelected.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Creada: %@"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionado"
           }
         }
       }
     },
-    "createNote.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create Note"
+    "alertTitle.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alert"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crear nota"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alerta"
           }
         }
       }
     },
-    "deleteAlertTitle.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn't delete note"
+    "all.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No se pudo eliminar la nota"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todas"
           }
         }
       }
     },
-    "deleteNote.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delete Note"
+    "blue.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blue"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eliminar nota"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azul"
           }
         }
       }
     },
-    "done.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Done"
+    "cancel.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Listo"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
           }
         }
       }
     },
-    "editNote.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Edit Note"
+    "compact.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compact"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editar nota"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compacto"
           }
         }
       }
     },
-    "emptyColorNotesTitle.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No %@ Notes"
+    "confirm.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sin notas %@"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmar"
           }
         }
       }
     },
-    "emptyNotesMessage.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create a note to get started."
+    "createdFormat.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Created: %@"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crea una nota para empezar."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creada: %@"
           }
         }
       }
     },
-    "emptyNotesTitle.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No Notes"
+    "createNote.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Note"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sin notas"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear nota"
           }
         }
       }
     },
-    "enterTextPlaceholder.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter text..."
+    "deleteAlertTitle.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't delete note"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escribe el texto..."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo eliminar la nota"
           }
         }
       }
     },
-    "enterTitlePlaceholder.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter title..."
+    "deleteConfirmationAlertMessage.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This action is permanent and cannot be undone."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escribe el título..."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta acción es permanente y no se puede deshacer."
           }
         }
       }
     },
-    "green.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Green"
+    "deleteConfirmationAlertTitle.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete?"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verde"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar?"
           }
         }
       }
     },
-    "grid.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grid"
+    "deleteNote.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Note"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cuadrícula"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar nota"
           }
         }
       }
     },
-    "list.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "List"
+    "done.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lista"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listo"
           }
         }
       }
     },
-    "name.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name"
+    "editNote.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Note"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nombre"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar nota"
           }
         }
       }
     },
-    "newest.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Newest"
+    "emptyColorNotesTitle.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No %@ Notes"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Más recientes"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin notas %@"
           }
         }
       }
     },
-    "note.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Note"
+    "emptyNotesMessage.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a note to get started."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nota"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea una nota para empezar."
           }
         }
       }
     },
-    "noteColor.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Note Color"
+    "emptyNotesTitle.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Notes"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Color de la nota"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin notas"
           }
         }
       }
     },
-    "oldest.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Oldest"
+    "enterTextPlaceholder.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter text..."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Más antiguas"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe el texto..."
           }
         }
       }
     },
-    "operationFailed.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Operation Failed"
+    "enterTitlePlaceholder.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter title..."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Error en la operación"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe el título..."
           }
         }
       }
     },
-    "pink.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pink"
+    "failedOperationAlertMessage.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error has occurred. Please try again."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rosa"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha ocurrido un error desconocido. Inténtalo de nuevo."
           }
         }
       }
     },
-    "purple.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Purple"
+    "green.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Green"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Morado"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verde"
           }
         }
       }
     },
-    "save.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Save"
+    "grid.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grid"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guardar"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuadrícula"
           }
         }
       }
     },
-    "saveAlertTitle.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn't save note"
+    "list.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "List"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No se pudo guardar la nota"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista"
           }
         }
       }
     },
-    "sticky.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sticky"
+    "name.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sticky"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
           }
         }
       }
     },
-    "tryAgain.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Try Again"
+    "newest.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Newest"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intentar de nuevo"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más recientes"
           }
         }
       }
     },
-    "updatedFormat.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Updated: %@"
+    "note.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Actualizada: %@"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota"
           }
         }
       }
     },
-    "yellow.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yellow"
+    "noteColor.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note Color"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amarillo"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Color de la nota"
           }
         }
       }
     },
-    "a11yEditNoteHint.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opens the note editor."
+    "oldest.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldest"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abre el editor de la nota."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más antiguas"
           }
         }
       }
     },
-    "a11yFilterHint.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filters the board by this color."
+    "pink.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pink"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtra el tablero por este color."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rosa"
           }
         }
       }
     },
-    "a11yNoteColorHint.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sets the note color."
+    "purple.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purple"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Establece el color de la nota."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morado"
           }
         }
       }
     },
-    "sortMenu.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sort, %@"
+    "save.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Orden, %@"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar"
           }
         }
       }
     },
-    "viewTypeMenu.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "View type, %@"
+    "saveAlertTitle.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't save note"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipo de vista, %@"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo guardar la nota"
           }
         }
       }
     },
-    "a11ySelected.key": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selected"
+    "sortMenu.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort, %@"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seleccionado"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orden, %@"
+          }
+        }
+      }
+    },
+    "sticky.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sticky"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sticky"
+          }
+        }
+      }
+    },
+    "tryAgain.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intentar de nuevo"
+          }
+        }
+      }
+    },
+    "updatedFormat.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updated: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizada: %@"
+          }
+        }
+      }
+    },
+    "viewTypeMenu.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View type, %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de vista, %@"
+          }
+        }
+      }
+    },
+    "yellow.key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yellow"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amarillo"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

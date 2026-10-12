@@ -17,8 +17,19 @@ extension CharacterLimiting {
         "\(text.wrappedValue.count) / \(charLimit)"
     }
 
+    var charLimitAccessibilityHint: String {
+        String(localized: LocalKey.a11yCharLimitHint(charLimit))
+    }
+
     func clampText(_ newText: String) {
         guard newText.count > charLimit else { return }
         text.wrappedValue = String(newText.prefix(charLimit))
+        announceCharacterLimitReached()
+    }
+
+    func announceCharacterLimitReached() {
+        AccessibilityNotification.Announcement(
+            String(localized: LocalKey.a11yCharLimitReached)
+        ).post()
     }
 }

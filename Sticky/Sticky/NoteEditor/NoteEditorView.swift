@@ -96,13 +96,7 @@ struct NoteEditorView: View {
                 }
             }
         }
-        .failedOperationAlert(
-            isPresented: $vm.shouldShowAlert,
-            title: vm.failedOperationTitle,
-            retryAction: { vm.retryOperation(context: context) },
-            cancelAction: { vm.cancelOperation() }
-        )
-
+        .alert(isPresented: $vm.shouldShowAlert, model: vm.alertModel)
     }
 
     private var doneButton: some View {

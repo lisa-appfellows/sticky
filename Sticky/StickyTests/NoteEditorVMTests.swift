@@ -69,87 +69,181 @@ final class NoteEditorVMTests: XCTestCase {
         XCTAssertEqual(value, "", "Should not overwrite within character limit")
         XCTAssertEqual(tester.charCounterText, "0 / 5")
 
+        // Over-limit clamp also posts an accessibility announcement (side effect).
         tester.changeText(to: "567890")
         XCTAssertEqual(value, "56789", "Should clamp over-limit characters and overwrite")
         XCTAssertEqual(tester.charCounterText, "5 / 5")
     }
 
-    func testSaveOnNewShouldCreateNewAndDismiss() throws {
-        let vm = NoteEditorVM()
+    func testCharacterLimitingAccessibilityHintShouldStateMaximum() {
+        var value = ""
+        let binding = Binding(
+            get: { value },
+            set: { newValue in value = newValue }
+        )
+        let tester = CharacterLimitingTester(text: binding, charLimit: 45)
 
-        vm.dto.title = "Title A"
+        XCTAssertEqual(
+            tester.charLimitAccessibilityHint,
+            String(localized: LocalKey.a11yCharLimitHint(45))
+        )
+    }
+
+    func testSaveOnNewShouldDismissOnSuccess() {
+        let probe = StoreProbe()
+        let vm = NoteEditorVM(store: probe)
+        
         vm.save(to: context)
-
-        let fetchedNotes = try DataStore.fetchNotes(from: context)
-        XCTAssertEqual(fetchedNotes.first?.title, "Title A")
+        
+        XCTAssertFalse(vm.shouldShowAlert)
+        XCTAssertNil(vm.alertModel)
         XCTAssertTrue(vm.shouldDismiss)
     }
 
-    func testSaveOnExistingShouldUpdateExistingAndDismiss() throws {
+    func testSaveOnExistingShouldUpdateDateAndDismissOnSuccess() {
         let today = Date()
         let yesterday = TestSupport.calendar.date(byAdding: .day, value: -1, to: today)!
 
-        let dto = NoteDTO(updated: yesterday, title: "Title B")
-        try DataStore.createNote(from: dto, context: context)
+        let probe = StoreProbe()
+        let dto = NoteDTO(updated: yesterday)
 
-        let first = try XCTUnwrap(try DataStore.fetchNotes(from: context).first)
-        XCTAssertEqual(first.title, "Title B")
-        XCTAssertTrue(TestSupport.isSameDay(first.asDTO.updated, as: yesterday))
+        let vm = NoteEditorVM(dto: dto, store: probe)
+        XCTAssertTrue(TestSupport.isSameDay(vm.dto.updated, as: yesterday))
 
-        let vm = NoteEditorVM(dto: first.asDTO)
-
-        vm.dto.title = "Updated Title"
         vm.save(to: context)
 
-        let second = try XCTUnwrap(try DataStore.fetchNotes(from: context).first)
-        XCTAssertEqual(second.title, "Updated Title")
-        XCTAssertTrue(TestSupport.isSameDay(second.asDTO.updated, as: today))
+        XCTAssertTrue(TestSupport.isSameDay(vm.dto.updated, as: today))
+        XCTAssertFalse(vm.shouldShowAlert)
+        XCTAssertNil(vm.alertModel)
         XCTAssertTrue(vm.shouldDismiss)
     }
 
-    func testDeleteOnExistingShouldDeleteExistingAndDismiss() throws {
-        let dto = NoteDTO(title: "Title C")
-        try DataStore.createNote(from: dto, context: context)
+    func testSaveOnNewWithErrorShouldCreateAlertModelAndTriggerAlert() {
+        let probe = StoreProbe(shouldError: true)
+        let vm = NoteEditorVM(store: probe)
 
-        let firstFetchedNotes = try DataStore.fetchNotes(from: context)
-        let first = try XCTUnwrap(firstFetchedNotes.first)
-        XCTAssertEqual(first.title, "Title C")
+        vm.save(to: context)
 
-        let vm = NoteEditorVM(dto: first.asDTO)
+        XCTAssertTrue(vm.shouldShowAlert)
+        XCTAssertEqual(vm.alertModel?.title, LocalKey.saveAlertTitle)
+        XCTAssertFalse(vm.shouldDismiss)
+    }
+
+    func testRetryOnSaveShouldDismissOnSuccess() {
+        let probe = StoreProbe(shouldError: true)
+        let vm = NoteEditorVM(store: probe)
+
+        vm.save(to: context)
+        XCTAssertNotNil(vm.alertModel)
+
+        probe.removeError()
+        vm.alertModel?.primaryAction.action()
+
+        XCTAssertTrue(vm.shouldDismiss)
+    }
+
+    func testCancelRetryOnSaveShouldClearAlertModelAndNotDismiss() {
+        let probe = StoreProbe(shouldError: true)
+        let vm = NoteEditorVM(store: probe)
+
+        vm.save(to: context)
+        XCTAssertNotNil(vm.alertModel)
+
+        probe.removeError()
+        vm.alertModel?.cancelAction.action()
+
+        XCTAssertNil(vm.alertModel)
+        XCTAssertFalse(vm.shouldDismiss)
+    }
+
+    func testDeleteExistingBeforeConfirmationShouldAlertWithConfirmation() {
+        let probe = StoreProbe()
+        let dto = NoteDTO()
+        let vm = NoteEditorVM(dto: dto, store: probe)
+
         vm.delete(from: context)
 
-        let fetchCount = try DataStore.fetchNoteCount(from: context)
-        XCTAssertEqual(fetchCount, 0)
+        XCTAssertTrue(vm.shouldShowAlert)
+        XCTAssertEqual(vm.alertModel?.title, LocalKey.deleteConfirmationAlertTitle)
+        XCTAssertFalse(vm.shouldDismiss)
+    }
+
+    func testDeleteExistingAfterConfirmationShouldDismissOnSuccess() {
+        let probe = StoreProbe()
+        let dto = NoteDTO()
+        let vm = NoteEditorVM(dto: dto, store: probe)
+
+        vm.delete(from: context)
+        XCTAssertNotNil(vm.alertModel)
+
+        vm.alertModel?.primaryAction.action()
+
+        XCTAssertNil(vm.alertModel)
         XCTAssertTrue(vm.shouldDismiss)
     }
 
-    func testRetryOnSaveOperationShouldSaveToContextAndDismiss() throws {
-        let vm = NoteEditorVM()
-        vm.currentOperation = .save
+    func testDeleteConfirmationCancellationShouldClearAndNotDismiss() {
+        let probe = StoreProbe()
+        let dto = NoteDTO()
+        let vm = NoteEditorVM(dto: dto, store: probe)
 
-        vm.dto.title = "Title D"
-        vm.retryOperation(context: context)
+        vm.delete(from: context)
+        XCTAssertNotNil(vm.alertModel)
 
-        let fetchedNotes = try DataStore.fetchNotes(from: context)
-        XCTAssertEqual(fetchedNotes.first?.title, "Title D")
+        vm.alertModel?.cancelAction.action()
+
+        XCTAssertNil(vm.alertModel)
+        XCTAssertFalse(vm.shouldDismiss)
+    }
+
+    func testDeleteExistingWithErrorAfterConfirmationShouldCreateAlertModelAndTriggerAlert() {
+        let probe = StoreProbe(shouldError: true)
+        let dto = NoteDTO()
+        let vm = NoteEditorVM(dto: dto, store: probe)
+
+        vm.delete(from: context)
+        XCTAssertNotNil(vm.alertModel)
+
+        vm.alertModel?.primaryAction.action()
+
+        XCTAssertTrue(vm.shouldShowAlert)
+        XCTAssertEqual(vm.alertModel?.title, LocalKey.deleteAlertTitle)
+        XCTAssertFalse(vm.shouldDismiss)
+    }
+
+    func testRetryOnDeleteShouldDismissOnSuccess() {
+        let probe = StoreProbe(shouldError: true)
+        let dto = NoteDTO()
+        let vm = NoteEditorVM(dto: dto, store: probe)
+
+        vm.delete(from: context)
+        XCTAssertEqual(vm.alertModel?.title, LocalKey.deleteConfirmationAlertTitle)
+
+        vm.alertModel?.primaryAction.action()
+        XCTAssertEqual(vm.alertModel?.title, LocalKey.deleteAlertTitle)
+
+        probe.removeError()
+        vm.alertModel?.primaryAction.action()
+
         XCTAssertTrue(vm.shouldDismiss)
     }
 
-    func testRetryOnDeleteOperationShouldDeleteFromContextAndDismiss() throws {
-        let dto = NoteDTO(title: "Title E")
-        try DataStore.createNote(from: dto, context: context)
+    func testCancelRetryOnDeleteShouldClearAlertAndResetTriggerAndNotDismiss() {
+        let probe = StoreProbe(shouldError: true)
+        let dto = NoteDTO()
+        let vm = NoteEditorVM(dto: dto, store: probe)
 
-        let firstFetchedNotes = try DataStore.fetchNotes(from: context)
-        let first = try XCTUnwrap(firstFetchedNotes.first)
-        XCTAssertEqual(first.title, "Title E")
+        vm.delete(from: context)
+        XCTAssertEqual(vm.alertModel?.title, LocalKey.deleteConfirmationAlertTitle)
 
-        let vm = NoteEditorVM(dto: first.asDTO)
-        vm.currentOperation = .delete
-        vm.retryOperation(context: context)
+        vm.alertModel?.primaryAction.action()
+        XCTAssertEqual(vm.alertModel?.title, LocalKey.deleteAlertTitle)
 
-        let fetchCount = try DataStore.fetchNoteCount(from: context)
-        XCTAssertEqual(fetchCount, 0)
-        XCTAssertTrue(vm.shouldDismiss)
+        probe.removeError()
+        vm.alertModel?.cancelAction.action()
+
+        XCTAssertNil(vm.alertModel)
+        XCTAssertFalse(vm.shouldDismiss)
     }
 
     private func dateFormatted(_ date: Date) -> String {
@@ -164,5 +258,30 @@ private struct CharacterLimitingTester: CharacterLimiting {
 
     func changeText(to newText: String) {
         clampText(newText)
+    }
+}
+
+private final class StoreProbe: NoteDataEditing {
+    private var shouldError: Bool
+    private let error = DataStoreError.failedToSave
+
+    init(shouldError: Bool = false) {
+        self.shouldError = shouldError
+    }
+
+    func removeError() {
+        shouldError = false
+    }
+
+    func createNote(from dto: NoteDTO, context: ModelContext) throws {
+        if shouldError { throw error }
+    }
+    
+    func updateNote(from dto: NoteDTO, context: ModelContext) throws {
+        if shouldError { throw error }
+    }
+    
+    func deleteNote(withNoteId noteId: String, context: ModelContext) throws {
+        if shouldError { throw error }
     }
 }

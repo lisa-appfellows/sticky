@@ -37,6 +37,7 @@ struct TitleField: View, EditorFieldable {
             .lineLimit(2)
             .noteFont(.mediumTitle)
             .focused(focusBinding, equals: field)
+            .accessibilityHint(charLimitAccessibilityHint)
             .onChange(of: text.wrappedValue) { _, newText in
                 clampText(newText)
             }
@@ -45,7 +46,7 @@ struct TitleField: View, EditorFieldable {
                 .foregroundStyle(.appSecondary)
                 .accessibilityHidden(true)
         }
-        .frame(minHeight: 44, alignment: .bottom)
+        .frame(minHeight: 35, alignment: .bottom)
     }
 }
 

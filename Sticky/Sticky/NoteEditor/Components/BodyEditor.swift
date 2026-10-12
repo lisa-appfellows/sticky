@@ -46,6 +46,7 @@ struct BodyEditor: View, EditorFieldable {
                 .noteFont(.mediumText)
                 .scrollContentBackground(.hidden)
                 .focused(focusBinding, equals: field)
+                .accessibilityHint(charLimitAccessibilityHint)
                 .onChange(of: text.wrappedValue) { _, newText in
                     clampText(newText)
                 }

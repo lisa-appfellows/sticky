@@ -35,18 +35,20 @@ Struct for create / edit. Apply to the context on Save or Delete.
 
 ## `DataStore`
 
-CRUD + fetch only. Board order is **not** persisted here — see `NoteBoardLayout` + `SortOption`.
+Shared struct (`DataStore.shared`) conforming to `NoteDataEditing` for create / update / delete. CRUD + fetch only — board order is **not** persisted here; see `NoteBoardLayout` + `SortOption`. Call sites pass `@Environment(\.modelContext)` (or a test context); the store does not own a context.
+
+Failures throw `DataStoreError` and log once via `AppLogger` (`loggedDataError`).
 
 ### Setup
 
 - `modelContainer(inMemoryOnly:)` — versioned schema + migration plan
 
-### CRUD
+### CRUD (`NoteDataEditing`)
 
 - `save(context:)`
 - `createNote(from:context:)`
 - `updateNote(from:context:)` — throws if note missing
-- `deleteNote(byNoteId:context:)` — throws if note missing
+- `deleteNote(withNoteId:context:)` — throws if note missing
 
 ### Fetch
 

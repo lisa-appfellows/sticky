@@ -55,7 +55,7 @@ Fixed height; overflow uses `lineLimit` + ellipsis (fade deferred to V2). Board 
 - `TitleField` (limit 45) + `BodyEditor` (limit 450)
 - Updated / created date line
 - Delete only when editing (not on create)
-- Save / delete failures → system alert (Retry / Cancel)
+- Delete confirmation → system alert (Confirm / Cancel); save / delete failures → Retry / Cancel
 
 ## Color filter — `ColorSortPicker`
 
