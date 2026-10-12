@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct NoteCardLayout {
-    private let dto: NoteDTO
+    let dto: NoteDTO
     private let viewType: ViewType
 
     var backgroundColor: Color {
         dto.noteColor.color
+    }
+
+    var cardSpacing: CGFloat {
+        viewType == .list ? 16 : 8
     }
 
     var title: String { dto.title }

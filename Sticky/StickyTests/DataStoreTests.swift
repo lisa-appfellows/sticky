@@ -11,6 +11,7 @@ import XCTest
 
 @MainActor
 final class DataStoreTests: XCTestCase {
+    private let store = DataStore.shared
     private var container: ModelContainer!
     private var context: ModelContext!
 
@@ -24,19 +25,19 @@ final class DataStoreTests: XCTestCase {
         let note = NoteModel(noteId: "saved", title: "Saved")
         context.insert(note)
 
-        try DataStore.save(context: context)
+        try store.save(context: context)
 
         let fetched = try XCTUnwrap(
-            try DataStore.fetchNote(byNoteId: "saved", context: context)
+            try store.fetchNote(byNoteId: "saved", context: context)
         )
         XCTAssertEqual(fetched.title, "Saved")
     }
 
     func testCreateNoteShouldInsert() throws {
         let dto = NoteDTO(title: "Title A")
-        try DataStore.createNote(from: dto, context: context)
+        try store.createNote(from: dto, context: context)
 
-        let fetched = try DataStore.fetchNotes(from: context)
+        let fetched = try store.fetchNotes(from: context)
         XCTAssertEqual(fetched.count, 1)
         XCTAssertEqual(fetched.first?.title, "Title A")
     }
@@ -47,14 +48,14 @@ final class DataStoreTests: XCTestCase {
         context.insert(note)
         try context.save()
 
-        let firstFetch = try DataStore.fetchNote(byNoteId: noteId, context: context)
+        let firstFetch = try store.fetchNote(byNoteId: noteId, context: context)
         var dto = try XCTUnwrap(firstFetch?.asDTO)
         dto.title = "Updated"
 
-        try DataStore.updateNote(from: dto, context: context)
+        try store.updateNote(from: dto, context: context)
 
         let secondFetch = try XCTUnwrap(
-            try DataStore.fetchNote(byNoteId: noteId, context: context)
+            try store.fetchNote(byNoteId: noteId, context: context)
         )
         XCTAssertEqual(secondFetch.title, "Updated")
     }
@@ -65,12 +66,12 @@ final class DataStoreTests: XCTestCase {
         context.insert(note)
         try context.save()
 
-        let firstFetch = try DataStore.fetchNote(byNoteId: noteId, context: context)
+        let firstFetch = try store.fetchNote(byNoteId: noteId, context: context)
         XCTAssertNotNil(firstFetch)
 
-        try DataStore.deleteNote(byNoteId: noteId, context: context)
+        try DataStore.shared.deleteNote(withNoteId: noteId, context: context)
 
-        let secondFetch = try DataStore.fetchNote(byNoteId: noteId, context: context)
+        let secondFetch = try store.fetchNote(byNoteId: noteId, context: context)
         XCTAssertNil(secondFetch)
     }
 }
@@ -84,7 +85,7 @@ extension DataStoreTests {
         }
         try context.save()
 
-        let count = try DataStore.fetchNoteCount(from: context)
+        let count = try store.fetchNoteCount(from: context)
         XCTAssertEqual(count, 3)
     }
 
@@ -95,7 +96,7 @@ extension DataStoreTests {
         }
         try context.save()
 
-        let fetchedNotes = try DataStore.fetchNotes(from: context)
+        let fetchedNotes = try store.fetchNotes(from: context)
         XCTAssertEqual(fetchedNotes.count, 3)
     }
 
@@ -104,7 +105,7 @@ extension DataStoreTests {
         let note = NoteModel(noteId: noteId, title: "Note")
         context.insert(note)
 
-        let fetched = try DataStore.fetchNote(byNoteId: noteId, context: context)
+        let fetched = try store.fetchNote(byNoteId: noteId, context: context)
         XCTAssertEqual(fetched?.noteId, noteId)
         XCTAssertEqual(fetched?.title, "Note")
     }

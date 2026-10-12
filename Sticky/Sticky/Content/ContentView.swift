@@ -19,8 +19,7 @@ struct ContentView: View {
                 Divider()
                 NoteBoardView(
                     contentVM: vm,
-                    colorFilter: vm.colorFilter,
-                    editorSheet: $vm.editorSheet
+                    colorFilter: vm.colorFilter
                 )
             }
             .background(Color.appBackground.ignoresSafeArea())

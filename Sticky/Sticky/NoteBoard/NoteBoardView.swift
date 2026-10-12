@@ -11,7 +11,6 @@ import SwiftUI
 struct NoteBoardView: View {
     @Environment(\.screenSize) private var screenSize
     @Bindable var contentVM: ContentVM
-    @Binding var editorSheet: NoteEditorSheet?
 
     @Query private var notes: [NoteModel]
     private let layout = NoteBoardLayout()
@@ -33,11 +32,9 @@ struct NoteBoardView: View {
 
     init(
         contentVM: ContentVM,
-        colorFilter: NoteColor?,
-        editorSheet: Binding<NoteEditorSheet?>
+        colorFilter: NoteColor?
     ) {
         _contentVM = Bindable(contentVM)
-        _editorSheet = editorSheet
 
         let predicate: Predicate<NoteModel>?
         if let colorFilterName = colorFilter?.rawValue {
@@ -56,7 +53,7 @@ struct NoteBoardView: View {
         if sortedNotes.isEmpty {
             EmptyNotesView(
                 noteColor: contentVM.colorFilter,
-                editorSheet: $editorSheet
+                editorSheet: $contentVM.editorSheet
             )
         } else {
             ScrollView {
@@ -66,7 +63,7 @@ struct NoteBoardView: View {
                             dto: note.asDTO,
                             viewType: contentVM.viewType,
                             availableWidth: layout.availableCardWidth(for: screenSize),
-                            editorSheet: $editorSheet
+                            editorSheet: $contentVM.editorSheet
                         )
                     }
                 }
@@ -83,8 +80,7 @@ struct NoteBoardView: View {
         NavigationStack {
             NoteBoardView(
                 contentVM: ContentVM(defaults: PreviewSupport.userDefaults),
-                colorFilter: nil,
-                editorSheet: .constant(nil)
+                colorFilter: nil
             )
         }
     }

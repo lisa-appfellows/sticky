@@ -49,13 +49,17 @@
 		04001C71307996BF001EFAE4 /* NoteColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C70307996BF001EFAE4 /* NoteColorSelector.swift */; };
 		04001C7A3079B2E3001EFAE4 /* EditorFieldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C793079B2E3001EFAE4 /* EditorFieldable.swift */; };
 		04001C7D3079CA2E001EFAE4 /* CharacterLimiting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C7C3079CA2E001EFAE4 /* CharacterLimiting.swift */; };
-		04001C813079CE37001EFAE4 /* FailedOperationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C803079CE37001EFAE4 /* FailedOperationAlert.swift */; };
+		04001C813079CE37001EFAE4 /* AlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C803079CE37001EFAE4 /* AlertModifier.swift */; };
 		04001C83307ACE05001EFAE4 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C82307ACE05001EFAE4 /* SortOption.swift */; };
 		04001C85307ACE4F001EFAE4 /* SortOptionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C84307ACE4F001EFAE4 /* SortOptionMenu.swift */; };
 		04001C87307ACFA0001EFAE4 /* NoteBoardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C86307ACFA0001EFAE4 /* NoteBoardLayout.swift */; };
 		04001C89307AD494001EFAE4 /* NoteBoardLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C88307AD494001EFAE4 /* NoteBoardLayoutTests.swift */; };
 		04001C8C307AD94A001EFAE4 /* DefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C8B307AD94A001EFAE4 /* DefaultsStorage.swift */; };
 		04001C90307AF729001EFAE4 /* EmptyNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001C8F307AF729001EFAE4 /* EmptyNotesView.swift */; };
+		04001CCB307C6745001EFAE4 /* EditorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001CCA307C6745001EFAE4 /* EditorAlert.swift */; };
+		04001CCE307C68C2001EFAE4 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001CCD307C68C2001EFAE4 /* AppLogger.swift */; };
+		04001CD0307C86C1001EFAE4 /* DataStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001CCF307C86C1001EFAE4 /* DataStoreError.swift */; };
+		04001CD2307C9AB6001EFAE4 /* NoteDataEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04001CD1307C9AB6001EFAE4 /* NoteDataEditing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,13 +125,17 @@
 		04001C70307996BF001EFAE4 /* NoteColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteColorSelector.swift; sourceTree = "<group>"; };
 		04001C793079B2E3001EFAE4 /* EditorFieldable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFieldable.swift; sourceTree = "<group>"; };
 		04001C7C3079CA2E001EFAE4 /* CharacterLimiting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLimiting.swift; sourceTree = "<group>"; };
-		04001C803079CE37001EFAE4 /* FailedOperationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailedOperationAlert.swift; sourceTree = "<group>"; };
+		04001C803079CE37001EFAE4 /* AlertModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModifier.swift; sourceTree = "<group>"; };
 		04001C82307ACE05001EFAE4 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
 		04001C84307ACE4F001EFAE4 /* SortOptionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionMenu.swift; sourceTree = "<group>"; };
 		04001C86307ACFA0001EFAE4 /* NoteBoardLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBoardLayout.swift; sourceTree = "<group>"; };
 		04001C88307AD494001EFAE4 /* NoteBoardLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBoardLayoutTests.swift; sourceTree = "<group>"; };
 		04001C8B307AD94A001EFAE4 /* DefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsStorage.swift; sourceTree = "<group>"; };
 		04001C8F307AF729001EFAE4 /* EmptyNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyNotesView.swift; sourceTree = "<group>"; };
+		04001CCA307C6745001EFAE4 /* EditorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorAlert.swift; sourceTree = "<group>"; };
+		04001CCD307C68C2001EFAE4 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		04001CCF307C86C1001EFAE4 /* DataStoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreError.swift; sourceTree = "<group>"; };
+		04001CD1307C9AB6001EFAE4 /* NoteDataEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataEditing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,7 +237,9 @@
 			isa = PBXGroup;
 			children = (
 				04001C1230762D9A001EFAE4 /* DataStore.swift */,
+				04001CCF307C86C1001EFAE4 /* DataStoreError.swift */,
 				04001C1E3076DD85001EFAE4 /* DataStore+Setup.swift */,
+				04001CD1307C9AB6001EFAE4 /* NoteDataEditing.swift */,
 				04001C1030762BA8001EFAE4 /* NoteDTO.swift */,
 				04001C0E30762B2A001EFAE4 /* NoteModel.swift */,
 			);
@@ -243,6 +253,7 @@
 				04001C793079B2E3001EFAE4 /* EditorFieldable.swift */,
 				04001C21307743D9001EFAE4 /* NoteEditorView.swift */,
 				04001C4930775411001EFAE4 /* NoteEditorVM.swift */,
+				04001CCC307C67BE001EFAE4 /* Alerts */,
 				04001C8E307AE00C001EFAE4 /* Components */,
 			);
 			path = NoteEditor;
@@ -271,6 +282,7 @@
 		04001C3430774CE5001EFAE4 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				04001CCD307C68C2001EFAE4 /* AppLogger.swift */,
 				04001C3130774851001EFAE4 /* LocalKey.swift */,
 				04001C3F30774DC9001EFAE4 /* NoteColor.swift */,
 				04001C3B30774D6C001EFAE4 /* NoteFont.swift */,
@@ -326,11 +338,19 @@
 			isa = PBXGroup;
 			children = (
 				04001C69307963A0001EFAE4 /* BodyEditor.swift */,
-				04001C803079CE37001EFAE4 /* FailedOperationAlert.swift */,
 				04001C70307996BF001EFAE4 /* NoteColorSelector.swift */,
 				04001C6D30796E1D001EFAE4 /* TitleField.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		04001CCC307C67BE001EFAE4 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				04001C803079CE37001EFAE4 /* AlertModifier.swift */,
+				04001CCA307C6745001EFAE4 /* EditorAlert.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,6 +489,7 @@
 				04001C22307743D9001EFAE4 /* NoteEditorView.swift in Sources */,
 				04001BE330761221001EFAE4 /* ContentView.swift in Sources */,
 				04001C4030774DC9001EFAE4 /* NoteColor.swift in Sources */,
+				04001CD2307C9AB6001EFAE4 /* NoteDataEditing.swift in Sources */,
 				04001C5430782D76001EFAE4 /* BottomToolbar.swift in Sources */,
 				04001C2430774409001EFAE4 /* NoteCardView.swift in Sources */,
 				04001C1530762EDE001EFAE4 /* PreviewSupport.swift in Sources */,
@@ -482,7 +503,8 @@
 				04001C3E30774DA5001EFAE4 /* NoteFontModifier.swift in Sources */,
 				04001C4E30776494001EFAE4 /* ColorSortPicker.swift in Sources */,
 				04001C5730782FC2001EFAE4 /* NoteEditorSheet.swift in Sources */,
-				04001C813079CE37001EFAE4 /* FailedOperationAlert.swift in Sources */,
+				04001C813079CE37001EFAE4 /* AlertModifier.swift in Sources */,
+				04001CD0307C86C1001EFAE4 /* DataStoreError.swift in Sources */,
 				04001C6E30796E1D001EFAE4 /* TitleField.swift in Sources */,
 				04001C1130762BA8001EFAE4 /* NoteDTO.swift in Sources */,
 				04001C8C307AD94A001EFAE4 /* DefaultsStorage.swift in Sources */,
@@ -492,6 +514,7 @@
 				04001C5E307866D0001EFAE4 /* SystemKey.swift in Sources */,
 				04001C1F3076DD85001EFAE4 /* DataStore+Setup.swift in Sources */,
 				04001C3C30774D6C001EFAE4 /* NoteFont.swift in Sources */,
+				04001CCB307C6745001EFAE4 /* EditorAlert.swift in Sources */,
 				04001C2630774425001EFAE4 /* NoteBoardView.swift in Sources */,
 				04001C5230776BCC001EFAE4 /* ViewTypeMenu.swift in Sources */,
 				04001C4630774E36001EFAE4 /* ViewType.swift in Sources */,
@@ -501,6 +524,7 @@
 				04001C0F30762B2A001EFAE4 /* NoteModel.swift in Sources */,
 				04001C71307996BF001EFAE4 /* NoteColorSelector.swift in Sources */,
 				04001C5C307842ED001EFAE4 /* SizingContainer.swift in Sources */,
+				04001CCE307C68C2001EFAE4 /* AppLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
